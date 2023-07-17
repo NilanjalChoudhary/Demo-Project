@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+                      :data => { :no_turbolink => true} %>
+<% else %>
+  <%= link_to "SIGN UP", new_user_registration_path %><br>
+  <%= link_to "SIgn IN", new_user_session_path %>
+<% end %>
