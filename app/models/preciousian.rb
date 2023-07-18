@@ -1,2 +1,0 @@
-class Preciousian < User
-end
