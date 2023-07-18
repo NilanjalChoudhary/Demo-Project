@@ -1,4 +1,7 @@
-<% @post.title %>
-<% if @user.avatar.attached? %>
-  <image src = " <%= (url_for(@user.avatar)) %> ">
-<% end %>
+<%= @post.each do |p| %>
+<div>
+  <% p.title %><br>
+  <% if @user.avatar.attached? %>
+    <image src = " <%= (url_for(@user.avatar)) %> ">
+  <% end %>
+</div>

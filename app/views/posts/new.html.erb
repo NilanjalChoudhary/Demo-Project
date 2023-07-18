@@ -1,13 +1,15 @@
-<%= form_with model: [ @user, @user.posts.build ] do |f| %>
+<%= form_with model: [ current_user, current_user.posts.build] do |f| %>
+
+  <div>
+    <%= f.label "Post Image" %><br>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div>
     <%= f.label :title %><br>
     <%= f.text_area :title %>
   </div>
 
-  <div>
-    <%= f.label "Post Image" %><br>
-    <%= f.text_area :avatar %>
-  </div>
   <div>
     <%= f.submit %>
   </div>
