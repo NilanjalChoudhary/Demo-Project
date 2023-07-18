@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
-  <% if current_user.role == "NonPreciousian" %>
-  <%= "Hello" %>
+  <%= current_user.role %>
+  <% if current_user.role == "Preciousian" %>
+    <%= "Hello" %>
   <%end%>
   <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
                       :data => { :no_turbolink => true} %>

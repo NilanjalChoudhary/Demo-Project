@@ -8,6 +8,13 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <% if user_signed_in? %>
+      <%= current_user.role %>
+      <% if current_user.role == "Preciousian" %>
+        <%= render template: "layouts/_navbarprecisousian" %>
+      <% end %>
+    <% end %>
   </head>
 
   <body>
