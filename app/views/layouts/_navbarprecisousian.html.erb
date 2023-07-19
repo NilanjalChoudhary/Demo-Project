@@ -60,11 +60,11 @@
     </style>
     <nav>
         <a class="links">
-        <%= button_to "HOME", user_posts_path(current_user) %>
+        <%= link_to "HOME", user_posts_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </a>
 
         <a class="links">
-        <%= link_to "CREATE POST", new_user_post_path(current_user) %>
+        <%= link_to "CREATE POST", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </a>
 
         <a class="links">

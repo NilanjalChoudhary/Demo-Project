@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
 
     <% if user_signed_in? %>
-      <%= current_user.role %>
+      <strong>WELCOME <%= current_user.name %></strong>
       <% if current_user.role == "Preciousian" %>
         <%= render template: "layouts/_navbarprecisousian" %>
         <%#= render template: "posts/index" %>
