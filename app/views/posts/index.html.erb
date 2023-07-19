@@ -1,8 +1,23 @@
 <% @posts.each do |p| %>
 <div>
+  <strong>USER:- </strong>
+  <%= current_user.name %><br>
   <%= p.title %><br>
-  <% if p.avatar.attached? %>
+  <%
+=begin%>
+ <% if p.avatar.attached? %>
     <image src = " <%= (url_for(p.avatar)) %> ">
+  <% end %> 
+<%
+=end%>
+  <%#= image_tag(p.image) %>
+  <%= image_tag(p.image, size: "300x200") %>
+  <%= p.body %>
+
+  <% p.pictures.each do |pics| %>
+    <%= image_tag(pics, size: "200x100") %>
   <% end %>
+  <hr />
+
 </div>
 <% end %>

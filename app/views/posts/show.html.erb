@@ -1,7 +1,20 @@
 <%= @post.each do |p| %>
-<div>
-  <% p.title %><br>
-  <% if @user.avatar.attached? %>
-    <image src = " <%= (url_for(@user.avatar)) %> ">
+  <p>
+    <strong>Title: </strong>
+    <%= p.title %><br>
+  </p>
+  <%= p.body %>
+  <br />
+  <%= p.image %>
+  <hr />
+  <%= p.pictures.each do |pics| %>
+    <%= pics %>
   <% end %>
-</div>
+
+  <%# if @user.avatar.attached? %>
+    <%
+=begin%>
+ <image src = " <%= (url_for(@user.avatar)) %> "> 
+<%
+=end%>
+<% end %>

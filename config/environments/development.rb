@@ -68,6 +68,9 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+
+
+
   #devise 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
@@ -82,4 +85,8 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
 
+
+  #switching default image processing from ruby-vips to mini_magick
+  config.active_storage.variant_processor = :mini_magick
+  
 end
