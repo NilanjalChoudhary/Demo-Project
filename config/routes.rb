@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
+  # get 'comments/index'
+  # get 'comments/create'
+  # get 'comments/destroy'
 
   root "homes#index"
   get "/homes", to: "homes#index"
-
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
     
   devise_scope :user do
     resources :users do
-      resources :posts
+      resources :posts do
+        resources :comments
+      end
     end
   end
 

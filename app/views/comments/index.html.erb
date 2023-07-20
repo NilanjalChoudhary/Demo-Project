@@ -1,0 +1,9 @@
+<%#= @comments %>
+<% @comments.each do |c| %>
+  <%#= c %>
+
+ <strong>user:- </strong><%= c.commenter %> 
+
+ <strong>comment:- </strong><%= c.comment %><hr /> 
+
+<% end %>

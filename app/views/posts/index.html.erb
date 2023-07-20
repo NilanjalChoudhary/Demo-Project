@@ -11,12 +11,22 @@
 <%
 =end%>
   <%#= image_tag(p.image) %>
-  <%= image_tag(p.image, size: "300x260") %>
-  <%= p.body %>
+
+
+  <%
+=begin%>
+ <%= image_tag(p.image, size: "300x260") %>
+  <%= p.body %> 
+<%
+=end%>
 
   <% p.pictures.each do |pics| %>
-    <%= image_tag(pics, size: "200x100") %>
+    <%= image_tag(pics, size: "150x180") %>
   <% end %>
+  <%= p.body %><br>
+  <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
+  <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
+  <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
   <hr />
 
 </div>

@@ -1,9 +1,13 @@
 <%= form_with model: [ current_user, current_user.posts.build] do |f| %>
-
+<%
+=begin%>
+ 
   <div>
     <%= f.label :image %><br>
     <%= f.file_field :image %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div>
     <%= f.label :pictures %><br>

@@ -1,0 +1,10 @@
+<%= form_with model: [current_user, @post, @comment] do |f| %>
+  <div>
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

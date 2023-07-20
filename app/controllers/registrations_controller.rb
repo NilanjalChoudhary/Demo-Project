@@ -18,3 +18,4 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:name, :age, :email, :phone_number, :year_of_experience, :password, :password_confirmation, :current_password, :role, :type)
   end
 end
+
