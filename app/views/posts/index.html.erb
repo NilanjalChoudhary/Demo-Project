@@ -24,6 +24,12 @@
     <%= image_tag(pics, size: "150x180") %>
   <% end %>
   <%= p.body %><br>
+  <%= p.get_likes.size %>
+  <% if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
+    <%= button_to "\u{2764}"%>
+  <% else %>
+    <% button_to "\u{2661}" %>
+  <% end %>
   <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
   <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
   <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
@@ -31,3 +37,5 @@
 
 </div>
 <% end %>
+<%#= button_to "\u{2661}" %>
+<%#= button_to "\u{2764}" %>

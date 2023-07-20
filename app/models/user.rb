@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  acts_as_voter
+
   has_many :posts, dependent: :destroy
   # enum :role, [:NonPreciousian, :Preciousian, :Admin]
   enum role: {NonPreciousian: 0, Preciousian: 1, Admin: 2}

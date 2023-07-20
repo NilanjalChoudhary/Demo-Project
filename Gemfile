@@ -5,7 +5,7 @@ ruby "3.0.0"
 
 #gem files added by the developer
 gem "devise"
-
+gem 'acts_as_votable'
 
 
 

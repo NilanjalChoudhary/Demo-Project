@@ -1,4 +1,7 @@
 <%#= @comments %>
+<% if @comments.size == 0 %>
+  <%= "Post has no comments, be the first to add a comment!:- "%><%= link_to "ADD COMMENT", new_user_post_comment_path %><br>
+<% else %>
 <% @comments.each do |c| %>
   <%#= c %>
  <strong>user:- </strong><%= c.commenter %> 
@@ -25,4 +28,5 @@
   } %>
  <% end %>
 <hr />
+<% end %>
 <% end %>

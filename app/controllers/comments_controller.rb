@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
 
   def index
+    # if Post.find(params[:post_id]).comments.count == 0
+      
     @post = Post.find(params[:post_id])
     @comments = @post.comments
     # @Comments = @post.comments
