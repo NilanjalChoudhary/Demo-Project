@@ -3,25 +3,9 @@
   <strong>USER:- </strong>
   <%= p.user.name %><br>
   <%= p.title %><br>
-  <%
-=begin%>
- <% if p.avatar.attached? %>
-    <image src = " <%= (url_for(p.avatar)) %> ">
-  <% end %> 
-<%
-=end%>
-  <%#= image_tag(p.image) %>
-
-
-  <%
-=begin%>
- <%= image_tag(p.image, size: "300x260") %>
-  <%= p.body %> 
-<%
-=end%>
 
   <% p.pictures.each do |pics| %>
-    <%= image_tag(pics, size: "150x180") %>
+    <%= image_tag(pics, size: "170x180") %>
   <% end %>
   <%= p.body %><br>
   <% likes = p.get_likes.size %> 
@@ -34,11 +18,15 @@
   <% end %>
 
   <% if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
-    <%= link_to "Unlike" %><br>
-    <%= button_to "\u{2764}"%><br>
+
+    <%= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %><br>
+    <%#= button_to "\u{2764}"%>
+
   <% else %>
-    <%= link_to "Like this post", p.liked_by current_user %><br>
-    <%= button_to "\u{2661}" %><br>
+
+    <%= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %><br>
+    <%#= button_to "\u{2661}" %>
+
   <% end %>
   <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
   <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>

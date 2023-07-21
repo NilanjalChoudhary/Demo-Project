@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  # respond_to :js, :html, :json
+
   def index
     @posts = Post.all
 
@@ -30,20 +33,31 @@ class PostsController < ApplicationController
     end
   end
 
-  def like_the_post
-    @post = Post.find(params[:post_id])
-    current_user.upvote(post)
-    redirect_to user_posts_path, notice: "Liked the post"
-  end
+  # def like_the_post
+  #   @post = Post.find(params[:post_id])
+  #   current_user.upvote(post)
+  #   redirect_to user_posts_path, notice: "Liked the post"
+  # end
 
-  def unlike_the_post
+  # def unlike_the_post
+  #   @post = Post.find(params[:post_id])
+  #   if current_user.voted_for?(@post)
+  #     current_user.unvote_for(@post)
+  #     redirect_to user_posts_path, notice: "Like removed"
+  #   else
+  #     redirect_to @post, alert: "You haven't liked the pot yet"
+  #   end
+  # end
+
+  def like
     @post = Post.find(params[:post_id])
-    if current_user.voted_for?(@post)
-      current_user.unvote_for(@post)
-      redirect_to user_posts_path, notice: "Like removed"
+    # if params[:format] == "like"
+    if current_user.liked? @post
+      @post.unliked_by current_user
     else
-      redirect_to @post, alert: "You haven't liked the pot yet"
+      @post.liked_by current_user
     end
+    redirect_to user_post_path
   end
 
   def edit

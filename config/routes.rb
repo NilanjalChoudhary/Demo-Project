@@ -11,12 +11,17 @@ Rails.application.routes.draw do
   devise_scope :user do
     resources :users do
       resources :posts do
+        member do
+          put "like", to: "posts#like" 
+        end
         resources :comments
       end
     end
   end
 
   
+  
+
   # resources :users do 
     # resources :posts
   # end
