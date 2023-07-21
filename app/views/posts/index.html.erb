@@ -5,8 +5,10 @@
   <%= p.title %><br>
 
   <% p.pictures.each do |pics| %>
-    <%= image_tag(pics, size: "170x180") %>
-  <% end %>
+    <%= image_tag(pics, size: "170x180")  %>
+    <%#= image_tag(pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class') %>
+<% end %>
+  <%# end %>
   <%= p.body %><br>
   <% likes = p.get_likes.size %> 
   <% if likes > 1 %>
@@ -18,7 +20,9 @@
   <% end %>
 
   <%# if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
+
   <% if current_user.liked? p %>
+
     <%#= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2764}"%>
 

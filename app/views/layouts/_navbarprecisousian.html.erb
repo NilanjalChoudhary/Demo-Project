@@ -72,7 +72,9 @@
         <% unless current_user.profile.present? %>
             <%= link_to "CREATE PROFILE", new_user_profile_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         <% else %>
-            <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
+            <% if current_user.profile.id != nil %>
+            <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+            <% end %>
         <% end %>
         <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         </a>
