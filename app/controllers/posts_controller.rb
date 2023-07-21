@@ -49,16 +49,36 @@ class PostsController < ApplicationController
   #   end
   # end
 
+  # def like
+  #   @post = Post.find(params[:post_id])
+  #   # if params[:format] == "like"
+  #   if current_user.liked? @post
+  #     @post.unliked_by current_user
+  #   else
+  #     @post.liked_by current_user
+  #   end
+  #   redirect_to user_post_path
+  # end
+
   def like
-    @post = Post.find(params[:post_id])
-    # if params[:format] == "like"
-    if current_user.liked? @post
-      @post.unliked_by current_user
-    else
-      @post.liked_by current_user
+    @post = Post.find(params[:post_id])  
+    @post.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_back fallback_location: root_path}
+      format.js  {render layout:false}
     end
-    redirect_to user_post_path
   end
+
+  def unlike
+    @post = Post.find(params[:post_id])  
+    @post.unliked_by current_user
+    respond_to do |format|
+      format.html {redirect_back fallback_location: root_path}
+      format.js {render layout:false}
+    end
+  end
+
+
 
   def edit
   end

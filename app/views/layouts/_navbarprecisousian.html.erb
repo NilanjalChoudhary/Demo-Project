@@ -68,7 +68,13 @@
         </a>
 
         <a class="links">
-        <%= button_to "PROFILE" %>
+        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
+        <% unless current_user.profile.present? %>
+            <%= link_to "CREATE PROFILE", new_user_profile_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        <% else %>
+            <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
+        <% end %>
+        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         </a>
         
         <div class="dropdown-menu">
