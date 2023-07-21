@@ -24,11 +24,21 @@
     <%= image_tag(pics, size: "150x180") %>
   <% end %>
   <%= p.body %><br>
-  <%= p.get_likes.size %>
-  <% if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
-    <%= button_to "\u{2764}"%>
+  <% likes = p.get_likes.size %> 
+  <% if likes > 1 %>
+    <%= likes %><%= " likes" %> <br>
+  <% elsif likes == 1 %>
+    <%= likes %><%= " like" %><br>
   <% else %>
-    <% button_to "\u{2661}" %>
+    <%= likes %><%= " likes" %><br>
+  <% end %>
+
+  <% if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
+    <%= link_to "Unlike" %><br>
+    <%= button_to "\u{2764}"%><br>
+  <% else %>
+    <%= link_to "Like this post", p.liked_by current_user %><br>
+    <%= button_to "\u{2661}" %><br>
   <% end %>
   <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
   <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
