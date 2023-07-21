@@ -19,19 +19,16 @@
 
   <%# if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
   <% if current_user.liked? p %>
-    <%#= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %><br>
+    <%#= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2764}"%>
 
   <%= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>
-                <span><%= p.get_likes.size %></span>
   <% else %>
 
     <%= button_to "like", like_user_post_path(current_user, p.id), method: :put %>
-                <span class="vote_count"><%= p.get_likes.size %></span>
-  <% end %>
-    <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %><br>
+    <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2661}" %>
-
+  <% end %>
   <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
   <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
   <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
