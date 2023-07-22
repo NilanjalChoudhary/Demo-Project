@@ -22,14 +22,18 @@
   <%# if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
 
   <% if current_user.liked? p %>
+  <%# if current_user.voted_up_on? p %>
 
     <%#= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2764}"%>
 
-  <%= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>
+    <%#= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>          
+    <%= button_to "unlike" , unlike_path(p.id)  %>
+
   <% else %>
 
-    <%= button_to "like", like_user_post_path(current_user, p.id), method: :put %>
+    <%= button_to "like", like_path(p.id) %>
+    
     <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2661}" %>
   <% end %>

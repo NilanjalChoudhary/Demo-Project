@@ -1,3 +1,10 @@
 <h1>YOUR PROFILE</h1>
 
+<%= image_tag(@profile.profile_pic, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %> <h1><%= @profile.username %></h1>
+
+<% if current_user.id == @profile.user_id %>
+    <%= button_to "EDIT PROFILE" %>
+<% end %>
+
+
 <%#= image_tag(@profile.profile_pic pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
