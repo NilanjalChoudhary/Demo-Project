@@ -1,13 +1,14 @@
 <% @posts.each do |p| %>
  <div>
   <strong>USER:- </strong>
-  <%= p.user.name %><br>
+  <%#= p.user.name %>
+  <%= link_to p.user.name, user_profile_path(user_id: p.user.id, id: p.user.profile.id) %><br>
   <%= p.title %><br>
 
   <% p.pictures.each do |pics| %>
     <%= image_tag(pics, size: "170x180")  %>
     <%#= image_tag(pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class') %>
-<% end %>
+  <% end %>
   <%# end %>
   <%= p.body %><br>
   <% likes = p.get_likes.size %> 

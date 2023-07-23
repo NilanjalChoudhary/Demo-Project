@@ -47,8 +47,11 @@
     <%= button_to "Follow" %>
 <% end %>
 
-
-<h1>YOUR POSTS</h1>
+<% if current_user.id == @profile.user_id %>
+  <h1>YOUR POSTS</h1>
+<% else %>
+  <h1>POSTS</h1>
+<% end %>
 <% User.find( @profile.user_id ).posts.each do |p| %>
     <%= p.title %>
         <% p.pictures.each do |p| %>
