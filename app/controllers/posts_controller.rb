@@ -12,10 +12,10 @@ class PostsController < ApplicationController
     # @post = 
   end
   
-  def upvote
-    @post = Post.find([params[:post_id]])
-    @post.liked_by current_user
-  end
+  # def upvote
+  #   @post = Post.find([params[:post_id]])
+  #   @post.liked_by current_user
+  # end
 
   def new
     @post = current_user.posts.new
@@ -63,22 +63,25 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:post_id])  
     @post.liked_by current_user
-    respond_to do |format|
-      format.html {redirect_back fallback_location: root_path}
-      format.js  {render layout:false}
-    end
+    # @post.upvote_by current_user
+    redirect_to user_posts_path
+    # respond_to do |format|
+    #   format.html {redirect_back fallback_location: root_path}
+    #   format.js  {render layout:false}
+    # end
   end
 
   def unlike
     @post = Post.find(params[:post_id])  
     @post.unliked_by current_user
-    respond_to do |format|
-      format.html {redirect_back fallback_location: root_path}
-      format.js {render layout:false}
-    end
+    # @post.unvote_by current_user
+    redirect_to user_posts_path
+
+    # respond_to do |format|
+    #   format.html {redirect_back fallback_location: root_path}
+    #   format.js {render layout:false}
+    # end
   end
-
-
 
   def edit
   end

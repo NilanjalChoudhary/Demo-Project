@@ -3,7 +3,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = current_user.profile
+    @user = User.find(params[:user_id])
+    @profile = @user.profile
   end
 
   def new
@@ -27,7 +28,6 @@ class ProfilesController < ApplicationController
 
   def destroy
   end
-
 
   private
   def profile_params
