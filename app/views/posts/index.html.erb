@@ -29,11 +29,13 @@
     <%#= button_to "\u{2764}"%>
 
     <%#= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>          
-    <%= button_to "unlike" , unlike_path(p.id)  %>
+    <%#= button_to "unlike" , unlike_path(p.id)  %>
+    <%= button_to "unlike"   %>
 
   <% else %>
 
-    <%= button_to "like", like_path(p.id) %>
+    <%#= button_to "like", like_path(p.id) %>
+    <%= button_to "like" %>
 
     <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %>
     <%#= button_to "\u{2661}" %>

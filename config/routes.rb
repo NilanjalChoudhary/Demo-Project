@@ -1,20 +1,28 @@
 Rails.application.routes.draw do
+  # get 'follows/create'
+  # get 'follows/destroy'
 
 
   root "homes#index"
   get "/homes", to: "homes#index"
 
-  post "posts/:id/like", to: "posts#like", as: "like"
-  post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
+  # post "posts/:id/like", to: "posts#like", as: "like"
+  # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
   
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
   
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
     
   devise_scope :user do
+    post 'user/:id/follow', to: "registrations#follow", as: "follow"
+    post 'user/:id/unfollow', to: "registrations#unfollow", as: "unfollow"
+    post 'user/:id/accept', to: "registrations#accept", as: "accept"
+    post 'user/:id/cancel', to: "registrations#cancel", as: "cancel"
     resources :users do
       resources :profiles
       resources :posts do
+        post "posts/:id/like", to: "posts#like", as: "like"
+        post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
         # member do
         #   put "like", to: "posts#like" 
         #   put "unlike", to: "posts#unlike"
@@ -23,6 +31,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-
-end
+end 
