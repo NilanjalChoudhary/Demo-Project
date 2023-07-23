@@ -1,10 +1,64 @@
-<h1>YOUR PROFILE</h1>
+<style>
+  .age-container {
+    display: flex;
+    align-items: center;
+  }
+  .age-container h1 {
+    margin-right: 15px; /* Optional: Add some spacing between "AGE:" and the age value */
+  }
 
-<%= image_tag(@profile.profile_pic, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %> <h1><%= @profile.username %></h1>
+  .profile-detail {
+    /* display: flex; */
+    position: relative;
+    align-items: center;
+    bottom: 200px; /* Adjust the top value to position the div vertically */
+    left: 200px;
+  }
+  .profile-detail {
+    margin-right: 5px;
+  }
+
+  .body {
+    bottom: 200px;  
+  }
+
+</style>
 
 <% if current_user.id == @profile.user_id %>
-    <%= button_to "EDIT PROFILE" %>
+  <h1>YOUR PROFILE</h1>
+<% else %>
+  <h1>PROFILE</h1>
+<% end %>
+<%= image_tag(@profile.profile_pic, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
+<div class = "profile-detail">
+    <h1>User name:- <%= @profile.username %></h1><br>
+    <div class = "age-container">
+        <h2>AGE:</h2>
+        <h3><%= @profile.age %></h3>
+    </div>
+</div>
+
+
+<div class = "body" >
+<% if current_user.id == @profile.user_id %>
+    <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
+    <%= link_to "EDIT PROFILE", edit_user_registration_path %>
+<% else %>
+    <%= button_to "Follow" %>
 <% end %>
 
+
+<h1>YOUR POSTS</h1>
+<% User.find( @profile.user_id ).posts.each do |p| %>
+    <%= p.title %>
+        <% p.pictures.each do |p| %>
+           <%= image_tag( p, size: "170x180") %>
+        <% end %>
+    <%= p.body %>
+    <%= p.get_likes.size %> LIkes<br>
+    <%= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
+    <hr>
+<% end %>
+</div>
 
 <%#= image_tag(@profile.profile_pic pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
