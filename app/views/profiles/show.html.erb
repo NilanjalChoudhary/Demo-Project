@@ -19,7 +19,8 @@
   }
 
   .body {
-    bottom: 200px;  
+    position: relative;
+    bottom: 140px;  
   }
 
 </style>
@@ -40,11 +41,22 @@
 
 
 <div class = "body" >
+<% followers_count = @profile.user.follow_count %>
+<h2> Followers:- <%= link_to followers_count, show_followers_path(@profile.id) %><br><br>
 <% if current_user.id == @profile.user_id %>
     <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
     <%= link_to "EDIT PROFILE", edit_user_registration_path %>
 <% else %>
-    <%= button_to "Follow" %>
+    <% if current_user.following? @profile.user %>
+      <%#= link_to 'Unfollow', follows_destroy_path(user_id: @profile.user ), method: :delete, class: 'btn btn-danger' %>
+      
+      <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %>
+    
+    <% else %>
+      
+      <%= button_to 'Follow', follow_path(@profile.user.id) %>
+    
+    <% end %>
 <% end %>
 
 <% if current_user.id == @profile.user_id %>

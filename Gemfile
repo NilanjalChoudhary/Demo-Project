@@ -1,13 +1,14 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.0.0"
 
 #gem files added by the developer
 gem "devise"
 gem 'acts_as_votable'
-
-
+# gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem "byebug"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"
