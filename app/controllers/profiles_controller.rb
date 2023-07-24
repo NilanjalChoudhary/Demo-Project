@@ -31,6 +31,16 @@ class ProfilesController < ApplicationController
     @followings = @profile.user.all_following
   end
 
+  def search
+    byebug
+    @searched = User.find_by(name: params[:user_name])
+    if @searched != nil
+      redirect_to user_profile_path(@searched.id, @searched.profile.id)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end 
+
   def edit
   end
 
