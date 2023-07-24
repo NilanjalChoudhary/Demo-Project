@@ -22,7 +22,13 @@ class ProfilesController < ApplicationController
 
   def show_followers
     @profile = Profile.find(params[:id])
-    @followers = @profile.user.all_follows
+    # @followers = @profile.user.all_follows
+    @followers = @profile.user.followers
+  end
+
+  def show_followings
+    @profile = Profile.find(params[:id])
+    @followings = @profile.user.all_following
   end
 
   def edit

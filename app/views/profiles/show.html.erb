@@ -23,6 +23,10 @@
     bottom: 140px;  
   }
 
+  .foll {
+    display: flex;  
+  }
+
 </style>
 
 <% if current_user.id == @profile.user_id %>
@@ -41,8 +45,18 @@
 
 
 <div class = "body" >
-<% followers_count = @profile.user.follow_count %>
-<h2> Followers:- <%= link_to followers_count, show_followers_path(@profile.id) %><br><br>
+<div class = "foll" >
+<%# followers_count = @profile.user.follow_count %>
+<% followers_count = @profile.user.followings.size %>
+
+<h2> Followers:- <%= link_to followers_count, show_followers_path(@profile.id) %>
+
+<% following_count = @profile.user.all_following.size %>
+
+ <h2> Following:- <%= link_to following_count, show_followings_path(@profile.id) %><br><br> 
+
+</div>
+
 <% if current_user.id == @profile.user_id %>
     <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
     <%= link_to "EDIT PROFILE", edit_user_registration_path %>
@@ -50,8 +64,8 @@
     <% if current_user.following? @profile.user %>
       <%#= link_to 'Unfollow', follows_destroy_path(user_id: @profile.user ), method: :delete, class: 'btn btn-danger' %>
       
-      <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %>
-    
+      <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %><br>
+      <%= button_to "CHAT" %>
     <% else %>
       
       <%= button_to 'Follow', follow_path(@profile.user.id) %>
@@ -59,10 +73,23 @@
     <% end %>
 <% end %>
 
+
 <% if current_user.id == @profile.user_id %>
+
+  <% if current_user.posts.size > 0 %>
   <h1>YOUR POSTS</h1>
+  <% else %>
+  <h1>YOU DON'T HAVE ANY POST</h1>
+  <% end %>
+
 <% else %>
+
+  <% if User.find( @profile.user_id ).posts.count > 0 %>
   <h1>POSTS</h1>
+  <% else %>
+  <h1>USER HAS NO POST</h1>
+  <% end %>
+
 <% end %>
 <% User.find( @profile.user_id ).posts.each do |p| %>
     <%= p.title %>

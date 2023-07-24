@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/homes", to: "homes#index"
 
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
+  get "profile/:id/show_followings", to: "profiles#show_followings", as: "show_followings"
 
   # post "posts/:id/like", to: "posts#like", as: "like"
   # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
