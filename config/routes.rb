@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root "homes#index"
   get "/homes", to: "homes#index"
 
+  get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
+
   # post "posts/:id/like", to: "posts#like", as: "like"
   # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
 
