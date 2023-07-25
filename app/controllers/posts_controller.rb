@@ -3,8 +3,13 @@ class PostsController < ApplicationController
   # respond_to :js, :html, :json
 
   def index
-    @posts = Post.all
-
+    if current_user.role == "NonPreciousian"
+      return @post = Post.where(post_for: "NonPreciousian")
+    # @q = User.ransack(params[:q])
+    # @user = @q.result(distinct: true)
+    else
+      return @posts = Post.all
+    end
   end
 
   def show
@@ -12,10 +17,10 @@ class PostsController < ApplicationController
     # @post = 
   end
   
-  def upvote
-    @post = Post.find([params[:post_id]])
-    @post.liked_by current_user
-  end
+  # def upvote
+  #   @post = Post.find([params[:post_id]])
+  #   @post.liked_by current_user
+  # end
 
   def new
     @post = current_user.posts.new
@@ -49,15 +54,38 @@ class PostsController < ApplicationController
   #   end
   # end
 
+  # def like
+  #   @post = Post.find(params[:post_id])
+  #   # if params[:format] == "like"
+  #   if current_user.liked? @post
+  #     @post.unliked_by current_user
+  #   else
+  #     @post.liked_by current_user
+  #   end
+  #   redirect_to user_post_path
+  # end
+
   def like
-    @post = Post.find(params[:post_id])
-    # if params[:format] == "like"
-    if current_user.liked? @post
-      @post.unliked_by current_user
-    else
-      @post.liked_by current_user
-    end
-    redirect_to user_post_path
+    @post = Post.find(params[:post_id])  
+    @post.liked_by current_user
+    # @post.upvote_by current_user
+    redirect_to user_posts_path
+    # respond_to do |format|
+    #   format.html {redirect_back fallback_location: root_path}
+    #   format.js  {render layout:false}
+    # end
+  end
+
+  def unlike
+    @post = Post.find(params[:post_id])  
+    @post.unliked_by current_user
+    # @post.unvote_by current_user
+    redirect_to user_posts_path
+
+    # respond_to do |format|
+    #   format.html {redirect_back fallback_location: root_path}
+    #   format.js {render layout:false}
+    # end
   end
 
   def edit

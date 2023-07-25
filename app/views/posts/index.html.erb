@@ -1,39 +1,49 @@
-<% @posts.each do |p| %>
-<div>
-  <strong>USER:- </strong>
-  <%= p.user.name %><br>
-  <%= p.title %><br>
 
-  <% p.pictures.each do |pics| %>
-    <%= image_tag(pics, size: "170x180") %>
+  <% @posts.each do |p| %>
+  <div>
+    <strong>USER:- </strong>
+    <%= link_to p.user.name, user_profile_path(user_id: p.user.id, id: p.user.profile.id) %><br>
+    <%= p.title %><br>
+
+    <% p.pictures.each do |pics| %>
+      <%= image_tag(pics, size: "170x180")  %>
+    <% end %>
+    <%= p.body %><br>
+    <% likes = p.get_likes.size %> 
+    <% if likes > 1 %>
+      <%= likes %><%= " likes" %> <br>
+    <% elsif likes == 1 %>
+      <%= likes %><%= " like" %><br>
+    <% else %>
+      <%= likes %><%= " likes" %><br>
+    <% end %>
+
+    <%# if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
+
+    <% if current_user.liked? p %>
+    <%# if current_user.voted_up_on? p %>
+
+      <%#= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %>
+      <%#= button_to "\u{2764}"%>
+
+      <%#= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>          
+      <%#= button_to "unlike" , unlike_path(p.id)  %>
+      <%= liked_to "unlike", user_post_unlike_path()  %>
+
+    <% else %>
+
+      <%#= button_to "like", like_path(p.id) %>
+      <%= button_to "like" %>
+
+      <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %>
+      <%#= button_to "\u{2661}" %>
+    <% end %>
+    <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
+    <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
+    <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
+    <hr />
+
+  </div>
   <% end %>
-  <%= p.body %><br>
-  <% likes = p.get_likes.size %> 
-  <% if likes > 1 %>
-    <%= likes %><%= " likes" %> <br>
-  <% elsif likes == 1 %>
-    <%= likes %><%= " like" %><br>
-  <% else %>
-    <%= likes %><%= " likes" %><br>
-  <% end %>
-
-  <% if p.get_upvotes.voters.pluck(:id).include? current_user.id  %>
-
-    <%= button_to "Unlike", like_user_post_path(current_user.id, p.id), method: :put %><br>
-    <%#= button_to "\u{2764}"%>
-
-  <% else %>
-
-    <%= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %><br>
-    <%#= button_to "\u{2661}" %>
-
-  <% end %>
-  <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
-  <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
-  <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
-  <hr />
-
-</div>
-<% end %>
-<%#= button_to "\u{2661}" %>
-<%#= button_to "\u{2764}" %>
+  <%#= button_to "\u{2661}" %>
+  <%#= button_to "\u{2764}" %>

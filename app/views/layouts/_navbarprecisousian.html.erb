@@ -13,6 +13,7 @@
     .dropdown-menu {
         position: relative;
         display: inline-block;
+        left: 310px;
     }
 
     .menu-content {
@@ -57,20 +58,77 @@
     .dropdown-menu:hover .menu-btn {
         background-color: #3e8e41;
     }
+
+    .search {
+        position: absolute;
+        left: 360px;
+        top: 44px;
+    }
+
+    .p-p {
+        position: absolute;
+        left: 360px;
+        top: 27px; 
+    }
+
+    .p-n {
+        position: absolute;
+        left: 430px;
+        top: 40px; 
+        size: "50x50";
+    }
+
+    .n-c {
+        position: -webkit-sticky; /* Safari */
+    }
+    
+ 
     </style>
-    <nav>
+
+    <nav class = "n-c" >
+    
         <a class="links">
+        <div class = "links">
         <%= link_to "HOME", user_posts_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
         </a>
 
         <a class="links">
+        <div class = "links">
         <%= link_to "CREATE POST", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
         </a>
 
         <a class="links">
-        <%= button_to "PROFILE" %>
+        <div class = "links">
+        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
+        <% unless current_user.profile.present? %>
+            <%= link_to "CREATE PROFILE", new_user_profile_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        <% else %>
+            
+            <% if current_user.profile.id != nil %>
+            <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+            <% end %>
+            </div>
+        <% end %>
+        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         </a>
         
+        
+        <% if current_user.role == "Preciousian" %>
+        <%#= form_tag(search_user_path(), method: :get, class: "search-form") do %>
+        <%#= form_tag(search_user_path(current_user, "tommy"), method: :get, class: "search-form") do %>
+            <%#= text_field_tag :search, params[:search], placeholder: "Search User..." %>
+            <%#= submit_tag "Search", class: "search-button" %>
+        <%# end %>
+        <% end %>
+
+        <% if current_user.role == "Admin" %>
+        <div class = "links">
+            <%= link_to "Pending Confirmations", approve_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
+        <% end %>
+
         <div class="dropdown-menu">
             <button class="menu-btn">Open</button>
             <div class="menu-content">
@@ -86,4 +144,5 @@
                 </a>
             </div>
         </div>
+    
     </nav>

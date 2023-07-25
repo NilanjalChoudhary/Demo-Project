@@ -11,11 +11,17 @@
 
     <% if user_signed_in? %>
       <strong>WELCOME <%= current_user.name %></strong>
-      <% if current_user.role == "Preciousian" %>
+
+      <% role_list = ["Preciousian", "Admin"] %>
+        <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
         <%= render template: "layouts/_navbarprecisousian" %>
-        <%#= render template: "posts/index" %>
+      <% else %>
+        <h1> Please wait till admin approve your profile </h1>
+        <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+                :data => { :no_turbolink => true} %>
       <% end %>
     <% end %>
+    
   </head>
 
   <body>

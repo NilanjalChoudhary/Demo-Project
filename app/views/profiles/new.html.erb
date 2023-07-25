@@ -1,0 +1,11 @@
+<%= form_with model: [current_user, @profile] do |p| %>
+  <div>
+    <%= p.label "Profile Photo" %>
+    <%= p.file_field :profile_pic %>
+  </div>
+  
+  <div>
+    <%= p.submit %>
+  </div>
+<% end %>
+  
