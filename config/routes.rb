@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
   get "profile/:id/show_followings", to: "profiles#show_followings", as: "show_followings"
 
+  get "posts/search/:username", to: "profiles#search", as: "search_user"
+
+  get "posts/approv_accounts", to: "profiles#approv_accounts", as: "approve"
+
+  put "approve_path/confirm_approve/:user_id", to: "profiles#confirm_approve", as: "confirm_approve"
+
   # post "posts/:id/like", to: "posts#like", as: "like"
   # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
 

@@ -109,6 +109,10 @@ GEM
     ffi (1.15.5-x64-unknown)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    haml (6.1.1)
+      temple (>= 0.8.2)
+      thor
+      tilt
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -189,6 +193,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     regexp_parser (2.8.1)
     reline (0.3.6)
       io-console (~> 0.5)
@@ -214,7 +222,9 @@ GEM
     sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    temple (0.10.2)
     thor (1.2.2)
+    tilt (2.2.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -255,11 +265,13 @@ DEPENDENCIES
   capybara
   debug
   devise
+  haml
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
   puma (~> 5.0)
   rails (~> 7.0.6)
+  ransack
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
