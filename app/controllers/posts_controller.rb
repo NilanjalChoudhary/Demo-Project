@@ -3,9 +3,13 @@ class PostsController < ApplicationController
   # respond_to :js, :html, :json
 
   def index
+    if current_user.role == "NonPreciousian"
+      return @post = Post.where(post_for: "NonPreciousian")
     # @q = User.ransack(params[:q])
     # @user = @q.result(distinct: true)
-    @posts = Post.all
+    else
+      return @posts = Post.all
+    end
   end
 
   def show

@@ -17,7 +17,8 @@
         <%= render template: "layouts/_navbarprecisousian" %>
       <% else %>
         <h1> Please wait till admin approve your profile </h1>
-        <%= redirect_to %>
+        <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+                :data => { :no_turbolink => true} %>
       <% end %>
     <% end %>
     
