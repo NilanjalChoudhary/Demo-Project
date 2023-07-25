@@ -3,8 +3,9 @@ class PostsController < ApplicationController
   # respond_to :js, :html, :json
 
   def index
+    # @q = User.ransack(params[:q])
+    # @user = @q.result(distinct: true)
     @posts = Post.all
-
   end
 
   def show

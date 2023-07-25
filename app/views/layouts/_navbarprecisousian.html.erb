@@ -64,10 +64,29 @@
         left: 360px;
         top: 44px;
     }
+
+    .p-p {
+        position: absolute;
+        left: 360px;
+        top: 27px; 
+    }
+
+    .p-n {
+        position: absolute;
+        left: 430px;
+        top: 40px; 
+        size: "50x50";
+    }
+
+    .n-c {
+        position: -webkit-sticky; /* Safari */
+    }
     
  
     </style>
-    <nav>
+
+    <nav class = "n-c" >
+    
         <a class="links">
         <%= link_to "HOME", user_posts_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </a>
@@ -90,15 +109,29 @@
         
         
         <% if current_user.role == "Preciousian" %>
-        <div class = "search" >
         <%#= form_tag(search_user_path(), method: :get, class: "search-form") do %>
-        <%= form_tag(search_user_path(current_user, "tommy"), method: :get, class: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search User..." %>
-            <%= submit_tag "Search", class: "search-button" %>
+        <%#= form_tag(search_user_path(current_user, "tommy"), method: :get, class: "search-form") do %>
+            <%#= text_field_tag :search, params[:search], placeholder: "Search User..." %>
+            <%#= submit_tag "Search", class: "search-button" %>
+        <%# end %>
         <% end %>
+
+        <%
+=begin%>
+ <div class = "search">
+        <form class = "f1">
+            <%= form_tag(search_user_path()) %>
+        <input class = "f2" type = "text" placeholder = "Search User" aria-label = "search">
+        <button class = "f3" type = "submit">Search</button>
+        </form>
+        </div> 
+<%
+=end%>
+
+        <%= image_tag(current_user.profile.profile_pic, size: "53x53", style: 'border-radius: 50%;', class: "p-p") %>
+        <div class = "p-n" >
+        <%= current_user.name %>
         </div>
-        <% end %>
-        
 
         <div class="dropdown-menu">
             <button class="menu-btn">Open</button>
@@ -115,5 +148,5 @@
                 </a>
             </div>
         </div>
-
+    
     </nav>

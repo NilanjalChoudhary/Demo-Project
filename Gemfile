@@ -10,6 +10,7 @@ gem 'acts_as_votable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "byebug"
 gem 'haml'
+gem "ransack"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"

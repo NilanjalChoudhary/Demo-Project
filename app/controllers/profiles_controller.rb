@@ -1,5 +1,8 @@
 class ProfilesController < ApplicationController
+  
   def index
+    # @q = User.ransack(params[:q])
+    # @user = @q.result(distinct: true)
   end
 
   def show
@@ -32,13 +35,17 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    byebug
-    @searched = User.find_by(name: params[:user_name])
-    if @searched != nil
+    # byebug
+    # @searched = User.find_by(name: params[:user_name])
+    @searched = User.where("users.name LIKE ?", "%" + params[:user_name] + "%")
+    # if @searched != nil
       redirect_to user_profile_path(@searched.id, @searched.profile.id)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
+
+    # @u = User.ransack(params[:name])
+    # @user = @q.result(distinct: true)
   end 
 
   def edit

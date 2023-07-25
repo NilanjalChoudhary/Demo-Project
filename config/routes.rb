@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
   get "profile/:id/show_followings", to: "profiles#show_followings", as: "show_followings"
 
-  get "search/:username", to: "profiles#search", as: "search_user"
+  get "posts/search/:username", to: "profiles#search", as: "search_user"
 
   # post "posts/:id/like", to: "posts#like", as: "like"
   # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
