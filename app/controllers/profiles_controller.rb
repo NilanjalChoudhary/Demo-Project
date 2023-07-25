@@ -30,7 +30,8 @@ class ProfilesController < ApplicationController
   def confirm_approve
     @user = User.find(params[:user_id])
     @user.update(confirm_by_admin: true)
-    redirect_to approve_path
+    MyMailer.approval_notification(@user).deliver_now
+    redirect_to approve_path,  notice: 'Email sent successfull. User has been approved.'
   end  
 
   def show_followers
