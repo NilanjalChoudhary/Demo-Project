@@ -13,8 +13,11 @@
       <strong>WELCOME <%= current_user.name %></strong>
 
       <% role_list = ["Preciousian", "Admin"] %>
-      <% if role_list.include? current_user.role %>
+        <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
         <%= render template: "layouts/_navbarprecisousian" %>
+      <% else %>
+        <h1> Please wait till admin approve your profile </h1>
+        <%= redirect_to %>
       <% end %>
     <% end %>
     

@@ -13,7 +13,7 @@
     .dropdown-menu {
         position: relative;
         display: inline-block;
-        left: 800px;
+        left: 400px;
     }
 
     .menu-content {
@@ -88,21 +88,28 @@
     <nav class = "n-c" >
     
         <a class="links">
+        <div class = "links">
         <%= link_to "HOME", user_posts_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
         </a>
 
         <a class="links">
+        <div class = "links">
         <%= link_to "CREATE POST", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
         </a>
 
         <a class="links">
+        <div class = "links">
         <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         <% unless current_user.profile.present? %>
             <%= link_to "CREATE PROFILE", new_user_profile_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         <% else %>
+            
             <% if current_user.profile.id != nil %>
             <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
             <% end %>
+            </div>
         <% end %>
         <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         </a>
@@ -116,21 +123,9 @@
         <%# end %>
         <% end %>
 
-        <%
-=begin%>
- <div class = "search">
-        <form class = "f1">
-            <%= form_tag(search_user_path()) %>
-        <input class = "f2" type = "text" placeholder = "Search User" aria-label = "search">
-        <button class = "f3" type = "submit">Search</button>
-        </form>
-        </div> 
-<%
-=end%>
-        <% if current_user.profile != nil %>
-        <%= image_tag(current_user.profile.profile_pic, size: "53x53", style: 'border-radius: 50%;', class: "p-p") %>
-        <div class = "p-n" >
-        <%= current_user.name %>
+        <% if current_user.role == "Admin" %>
+        <div class = "links">
+            <%= link_to "Pending Confirmations", approve_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </div>
         <% end %>
 

@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
-  <%= current_user.role %>
-  <% if current_user.role == "Preciousian" %>
+  <% role_list = ["Preciousian", "Admin"] %>
+  <% if role_list.include? current_user.role %>
     <%= "Hello" %>
   <%end%>
   <%#= button_to "LOG OUT", destroy_user_session_path, :method => :delete,

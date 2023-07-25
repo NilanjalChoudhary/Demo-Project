@@ -23,6 +23,16 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def approv_accounts
+    @users = User.where(confirm_by_admin: false)
+  end
+
+  def confirm_approve
+    @user = User.find(params[:user_id])
+    @user.update(confirm_by_admin: true)
+    redirect_to approve_path
+  end  
+
   def show_followers
     @profile = Profile.find(params[:id])
     # @followers = @profile.user.all_follows
