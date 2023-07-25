@@ -127,11 +127,12 @@
         </div> 
 <%
 =end%>
-
+        <% if current_user.profile != nil %>
         <%= image_tag(current_user.profile.profile_pic, size: "53x53", style: 'border-radius: 50%;', class: "p-p") %>
         <div class = "p-n" >
         <%= current_user.name %>
         </div>
+        <% end %>
 
         <div class="dropdown-menu">
             <button class="menu-btn">Open</button>
