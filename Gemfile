@@ -12,6 +12,9 @@ gem "byebug"
 gem 'haml'
 gem "ransack"
 gem "cancancan", "~> 3.5"
+gem "bourbon", "~> 7.3"
+gem "bitters", "~> 2.0"
+
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -83,3 +86,7 @@ group :test do
 end
 
 #test
+
+
+
+gem "sassc", "~> 2.4"
