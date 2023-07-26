@@ -11,6 +11,8 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "byebug"
 gem 'haml'
 gem "ransack"
+gem "cancancan", "~> 3.5"
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"
@@ -79,3 +81,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+

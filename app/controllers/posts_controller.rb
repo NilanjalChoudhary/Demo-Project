@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     if current_user.role == "NonPreciousian"
-      return @post = Post.where(post_for: "NonPreciousian")
+      return @posts = Post.where(post_for: "NonPreciousian")
     # @q = User.ransack(params[:q])
     # @user = @q.result(distinct: true)
     else
@@ -99,6 +99,6 @@ class PostsController < ApplicationController
 
   private 
   def post_params
-    params.require(:post).permit(:title, :body, pictures: [])
+    params.require(:post).permit(:title, :body, :post_for, pictures: [])
   end
 end

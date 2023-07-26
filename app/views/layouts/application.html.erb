@@ -12,7 +12,7 @@
     <% if user_signed_in? %>
       <strong>WELCOME <%= current_user.name %></strong>
 
-      <% role_list = ["Preciousian", "Admin"] %>
+      <% role_list = ["Preciousian", "Admin", "NonPreciousian"] %>
         <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
         <%= render template: "layouts/_navbarprecisousian" %>
       <% else %>

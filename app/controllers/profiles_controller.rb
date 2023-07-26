@@ -24,7 +24,9 @@ class ProfilesController < ApplicationController
   end
 
   def approv_accounts
-    @users = User.where(confirm_by_admin: false)
+    if current_user.role == "Admin"
+      @users = User.where(confirm_by_admin: false)
+    end
   end
 
   def confirm_approve

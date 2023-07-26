@@ -1,4 +1,4 @@
-
+<% if current_user.role == "Admin" %>
 <% if @users.size == 0 %>
   <h1> NO APPROVEL PENDING </h1>
 <% else %>
@@ -8,5 +8,6 @@
   <h3><%= p.name %> - 
   <%= button_to "Approve", confirm_approve_path(p.id), method: :put %></h3>
   <br>
+<% end %>
 <% end %>
 <% end %>
