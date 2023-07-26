@@ -13,13 +13,18 @@ class CommentsController < ApplicationController
   def new
     # @user = current_user
     # @post = @user.posts.find(params[:id])
-
+    
     @post = Post.find(params[:post_id])
-    # @comment = current_user.posts.find(params[:post_id]).comments.new()
-    @comment = @post.comments.new()
+      # if current_user.role == "Preciousian" and @post.post_for != "NonPreciousian"
+      #   redirect_to user_post_comments_path, notice: 'Only NonPreciousian can create comments.'
+      # else
+      
+      # @comment = current_user.posts.find(params[:post_id]).comments.new()
+        @comment = @post.comments.new()
+      # end
   end
 
-  def create
+  def creates
     # @user = User.find(params{:id})
     # @user = current_user
     # @post = @user.posts.find(params[:id])
@@ -28,7 +33,7 @@ class CommentsController < ApplicationController
     # @comment = current_user.posts.find(params[:post_id]).comments.new(comment_params)
     @comment = @post.comments.new(comment_params.merge(commenter: current_user.name))
 
-    if @comment.save 
+    if @comment.save and current_user.role == "Preciousian" and @post.post_for != "NonPreciousian"
       redirect_to user_post_comments_path
     else
       render :new, status: :unprocessable_entity

@@ -36,6 +36,7 @@
 <% end %>
 <%= image_tag(@profile.profile_pic, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
 <div class = "profile-detail">
+
     <h1>User name:- <%= @profile.username %></h1><br>
     <div class = "age-container">
         <h2>AGE:</h2>
@@ -59,7 +60,10 @@
 
 <% if current_user.id == @profile.user_id %>
     <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
-    <%= link_to "CHANGE PASSWORD", edit_user_registration_path %>
+    <%= link_to "CHANGE PASSWORD", edit_user_registration_path %><br><br>
+
+    <%= button_to "Delete Account", registration_path(current_user), method: :delete, data: { confirm: "Are you sure you want to delete your account?" } %>
+
 <% else %>
     <% if current_user.following? @profile.user %>
       <%#= link_to 'Unfollow', follows_destroy_path(user_id: @profile.user ), method: :delete, class: 'btn btn-danger' %>

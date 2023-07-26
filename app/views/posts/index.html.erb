@@ -1,7 +1,26 @@
-  <% @posts.each do |p| %>
+<style>
+  .user-info {
+    display: inline-block;
+  } 
+
+  .admin-label {
+    margin-left: 5px; /* Add some spacing between the user name and the "(ADMIN)" label */
+  }
+
+</style>
+  
+  
+<% @posts.each do |p| %>
   <div>
+  <div class="user-info">
     <strong>USER:- </strong>
-    <%= link_to p.user.name, user_profile_path(user_id: p.user.id, id: p.user.profile.id) %><br>
+    <% unless current_user.role == "NonPreciousian" %>
+      <%= link_to p.user.name, user_profile_path(user_id: p.user.id, id: p.user.profile.id) %> 
+    <% end %>
+    <% if p.user.role == "Admin" %>
+        <span class="admin-label">(ADMIN)</span>
+    <% end %><br>
+  <div>
     <%= p.title %><br>
 
     <% p.pictures.each do |pics| %>

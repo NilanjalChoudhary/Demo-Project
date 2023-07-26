@@ -1,7 +1,8 @@
 <% if current_user.role == "Preciousian" and ["All", "NonPreciousian"].include?@post.post_for %>
 
   <h1>YOu are restricted to add comments </h1>
-  <% redirect_to user_posts_path(current_user.id) %>
+  <%#= redirect_to user_posts_path(current_user.id) %>
+  <%#= render %>
 
 <% else %>
 
