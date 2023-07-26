@@ -79,7 +79,7 @@
     }
 
     .n-c {
-        position: -webkit-sticky; /* Safari */
+        position: -webkit-sticky; 
     }
     
  
@@ -93,35 +93,43 @@
         </div>
         </a>
 
+
+        <% if current_user.role == "Admin" %>
+        <div class = "links" >
+            <%= link_to "CREATE POST(Preciousian)", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
+
+        <div class = "links" >
+            <%= link_to "CREATE POST(NonPreciousian)", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+        </div>
+
+        <% elsif current_user.role == "Preciousian" %>
         <a class="links">
         <div class = "links">
         <%= link_to "CREATE POST", new_user_post_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </div>
         </a>
+        <% end %>
 
         <a class="links">
         <div class = "links">
-        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         <% unless current_user.profile.present? %>
             <%= link_to "CREATE PROFILE", new_user_profile_path(current_user), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         <% else %>
             
             <% if current_user.profile.id != nil %>
+            <div class = "links" >
             <%= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
             <% end %>
             </div>
         <% end %>
-        <%#= link_to "PROFILE", user_profile_path(current_user, current_user.profile.id) %>
         </a>
+        </div>
         
         
-        <% if current_user.role == "Preciousian" %>
-        <%#= form_tag(search_user_path(), method: :get, class: "search-form") do %>
-        <%#= form_tag(search_user_path(current_user, "tommy"), method: :get, class: "search-form") do %>
-            <%#= text_field_tag :search, params[:search], placeholder: "Search User..." %>
-            <%#= submit_tag "Search", class: "search-button" %>
-        <%# end %>
+        <% if current_user.role == "Admin" %>
         <% end %>
+
 
         <% if current_user.role == "Admin" %>
         <div class = "links">

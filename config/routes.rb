@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
 
   root "homes#index"
   get "/homes", to: "homes#index"

@@ -25,6 +25,13 @@
     <%= f.rich_text_area :body %>
   </div>
 
+  <% if current_user.role == "Admin" %>
+    <div>
+      <%= f.label "Post For" %>
+      <%= f.select :post_for, ["NonPreciousian", "Preciousian"] %>
+    </div><br>
+  <% end %>
+
   <div>
     <%= f.submit %>
   </div>

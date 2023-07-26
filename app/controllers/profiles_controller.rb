@@ -24,13 +24,16 @@ class ProfilesController < ApplicationController
   end
 
   def approv_accounts
-    @users = User.where(confirm_by_admin: false)
+    if current_user.role == "Admin"
+      @users = User.where(confirm_by_admin: false)
+    end
   end
 
   def confirm_approve
     @user = User.find(params[:user_id])
     @user.update(confirm_by_admin: true)
-    redirect_to approve_path
+    MyMailer.approval_notification(@user).deliver_now
+    redirect_to approve_path,  notice: 'Email sent successfull. User has been approved.'
   end  
 
   def show_followers
