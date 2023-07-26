@@ -1,0 +1,15 @@
+<% if @followers.size == 0 %>
+  <h2>User Don't have Follower</h2>
+<% else %>
+<h1>ALL FOLOWERS LIST</h1>
+
+<% counter = 1 %>
+
+<% @followers.each do |followers| %>
+  <% id = followers.id %>
+  <%#= User.find(id).profile.id %>
+  <h1><%= counter %>)
+  <%= link_to User.find(id).name, user_profile_path( User.find(id).id, User.find(id).profile.id ) %><br>
+  </h1>
+<% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <% role_list = ["Preciousian", "Admin"] %>
+  <% if role_list.include? current_user.role %>
+    <%= "Hello" %>
+  <%end%>
+  <%#= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+                      :data => { :no_turbolink => true} %>
+  <%#= redirect_to user_posts_path(current_user)  %>
+
+<% else %>
+  <%= link_to "SIGN UP", new_user_registration_path %><br>
+  <%= link_to "SIGN IN", new_user_session_path %>
+<% end %> 

@@ -1,0 +1,2 @@
+class Nonpreciousian < User
+end
