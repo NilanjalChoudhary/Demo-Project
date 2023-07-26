@@ -90,3 +90,5 @@ end
 
 
 gem "sassc", "~> 2.4"
+
+gem "clearance", "~> 2.6"
