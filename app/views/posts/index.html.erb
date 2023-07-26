@@ -5,7 +5,7 @@
     <%= p.title %><br>
 
     <% p.pictures.each do |pics| %>
-      <%= image_tag(pics, size: "170x180")  %>
+      <%= image_tag(pics, size: "350x360", style: 'border-radius: 20%;')  %>
     <% end %>
     <%= p.body %><br>
     <% likes = p.get_likes.size %> 
