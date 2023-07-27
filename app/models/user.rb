@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  scope :all_except, ->(user) { where.not(id: user) }
+
+
   acts_as_voter
 
   has_one :profile, dependent: :destroy

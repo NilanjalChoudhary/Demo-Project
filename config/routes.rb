@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
   
   root "homes#index"
 
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
 
-  
+  resources :rooms
 
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
     
