@@ -4,23 +4,9 @@
 <% else %>
 <% @comments.each do |c| %>
   <%#= c %>
- <strong>user:- </strong><%= c.commenter %> 
+ <strong>user:- </strong><%= c.commenter %><br>
  <strong>comment:- </strong><%= c.comment %> 
- <%
-=begin%>
- <% a = [] %> 
-<%
-=end%>
- <%
-=begin%>
- <% a << current_user.id %> 
-<%
-=end%>
- <%
-=begin%>
- <% if a == User.joins(posts: :comments).where( "comments.id = ?", c.id ).select("users.id") %> 
-<%
-=end%>
+ 
  <% if current_user.name == c.commenter %>
   <%= link_to "DELETE", user_post_comment_path(current_user, c.post.id ,c.id), data: {
     turbo_method: :delete, 
