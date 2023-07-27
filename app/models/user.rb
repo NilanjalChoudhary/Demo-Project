@@ -1,11 +1,13 @@
 class User < ApplicationRecord
 
   scope :all_except, ->(user) { where.not(id: user) }
-
+  after_create_commit { broadcast_append_to "users" }
 
   acts_as_voter
 
   has_one :profile, dependent: :destroy
+
+  has_many :messages, dependent: :destroy
 
   acts_as_follower
   acts_as_followable

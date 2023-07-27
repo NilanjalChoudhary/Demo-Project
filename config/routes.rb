@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/new'
+  get 'messages/index'
   get 'rooms/index'
   
   root "homes#index"
@@ -21,11 +23,15 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
 
-  resources :rooms
+  resources :rooms do
+    resources :messages
+  end
 
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
-    
+
   devise_scope :user do
+    # get 'users/:id', to: 'registrations#show', as: 'user'
+
     post 'user/:id/follow', to: "registrations#follow", as: "follow"
     post 'user/:id/unfollow', to: "registrations#unfollow", as: "unfollow"
     post 'user/:id/accept', to: "registrations#accept", as: "accept"
