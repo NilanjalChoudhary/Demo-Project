@@ -14,13 +14,8 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    # @post = 
   end
   
-  # def upvote
-  #   @post = Post.find([params[:post_id]])
-  #   @post.liked_by current_user
-  # end
 
   def new
     @post = current_user.posts.new
