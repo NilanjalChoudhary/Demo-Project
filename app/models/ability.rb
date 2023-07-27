@@ -22,10 +22,6 @@ class Ability
           can :approv_accounts, Profile
           can :confirm_approve, Profile
 
-          can :read, Comment
-          can :create, Comment
-          can :destroy, Comment
-
         when "Preciousian"
           can :read, Comment
           can :create, Comment
@@ -37,10 +33,6 @@ class Ability
 
           cannot :approv_accounts, Profile
           cannot :confirm_approve, Profile
-          
-          can :read, Comment
-          can :create, Comment
-          can :destroy, Comment
 
         when "NonPreciousian"
           can :read, Post
@@ -49,6 +41,7 @@ class Ability
           can :create, Profile
           # can :destroy, Profile 
 
+          
           cannot :approv_accounts, Profile
           cannot :confirm_approve, Profile
 

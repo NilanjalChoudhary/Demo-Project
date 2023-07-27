@@ -38,12 +38,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # def like_the_post
-  #   @post = Post.find(params[:post_id])
-  #   current_user.upvote(post)
-  #   redirect_to user_posts_path, notice: "Liked the post"
-  # end
-
   # def unlike_the_post
   #   @post = Post.find(params[:post_id])
   #   if current_user.voted_for?(@post)
@@ -66,26 +60,17 @@ class PostsController < ApplicationController
   # end
 
   def like
-    @post = Post.find(params[:post_id])  
+    
+    @post = Post.find(params[:id])  
     @post.liked_by current_user
-    # @post.upvote_by current_user
-    redirect_to user_posts_path
-    # respond_to do |format|
-    #   format.html {redirect_back fallback_location: root_path}
-    #   format.js  {render layout:false}
-    # end
+    redirect_to user_posts_path(Post.all)
   end
 
   def unlike
-    @post = Post.find(params[:post_id])  
+    @post = Post.find(params[:id])  
     @post.unliked_by current_user
-    # @post.unvote_by current_user
-    redirect_to user_posts_path
+    redirect_to user_posts_path(Post.all)
 
-    # respond_to do |format|
-    #   format.html {redirect_back fallback_location: root_path}
-    #   format.js {render layout:false}
-    # end
   end
 
   def edit

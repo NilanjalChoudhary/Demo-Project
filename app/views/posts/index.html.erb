@@ -46,16 +46,18 @@
 
       <%#= button_to "unlike" , unlike_user_post_path(current_user.id, p.id), method: :put%>          
       <%#= button_to "unlike" , unlike_path(p.id)  %>
-      <%= liked_to "unlike", user_post_unlike_path()  %>
+      
+      <%#= liked_to "unlike", user_post_unlike_path(current_user.id, p.id)  %>
+      <%= button_to "unlike", unlike_path( p.id)  %>
 
     <% else %>
 
       <%#= button_to "like", like_path(p.id) %>
-      <%= button_to "like" %>
+      <%= button_to "like", like_path(p.id) %>
 
       <%#= button_to "Like", like_user_post_path(current_user.id, p.id), method: :put %>
       <%#= button_to "\u{2661}" %>
-    <% end %>
+    <% end %><br>
     <%# p_id = current_user.posts.pluck("posts.id").find_by("posts.title = ?", p.title)  %>
     <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
     <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>

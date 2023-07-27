@@ -1,19 +1,16 @@
-<% if current_user.role == "Preciousian" and ["All", "NonPreciousian"].include?@post.post_for %>
+<% if current_user.role == "Preciousian" and @post.post_for == "NonPreiousian" %>
 
-  <h1>YOu are restricted to add comments </h1>
-  <%#= redirect_to user_posts_path(current_user.id) %>
-  <%#= render %>
-
+  <h1> You are not authorized to do this action</h1>
 <% else %>
 
-<%= form_with model: [current_user, @post, @comment] do |f| %>
-  <div>
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-  </div>
+  <%= form_with model: [current_user, @post, @comment] do |f| %>
+    <div>
+      <%= f.label :comment %>
+      <%= f.text_area :comment %>
+    </div>
 
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>

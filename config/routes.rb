@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'chats/show'
 
   root "homes#index"
+
   get "/homes", to: "homes#index"
 
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
@@ -13,8 +14,8 @@ Rails.application.routes.draw do
 
   put "approve_path/confirm_approve/:user_id", to: "profiles#confirm_approve", as: "confirm_approve"
 
-  # post "posts/:id/like", to: "posts#like", as: "like"
-  # post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
+  post "posts/:id/like", to: "posts#like", as: "like"
+  post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
 
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
 
@@ -28,8 +29,9 @@ Rails.application.routes.draw do
     resources :users do
       resources :profiles
       resources :posts do
-        post "posts/:id/like", to: "posts#like", as: "like"
-        post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
+        # post "like", to: "posts#like", as: "like"
+        # post "unlike", to: "posts#unlike", as: "unlike"
+        
         # member do
         #   put "like", to: "posts#like" 
         #   put "unlike", to: "posts#unlike"
