@@ -8,6 +8,8 @@ class User < ApplicationRecord
   acts_as_followable
 
   has_many :posts, dependent: :destroy
+
+  has_many :contacts, dependent: :destroy 
   # enum :role, [:NonPreciousian, :Preciousian, :Admin]
   enum role: {NonPreciousian: 0, Preciousian: 1, Admin: 2}
 

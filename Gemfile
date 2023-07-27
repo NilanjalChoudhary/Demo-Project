@@ -84,10 +84,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-#test
-
-
-
 gem "sassc", "~> 2.4"
 
-gem "clearance", "~> 2.6"
+#test

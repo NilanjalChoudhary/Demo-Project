@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     # @Comments = @post.comments
   end
-
   def new
     # @user = current_user
     # @post = @user.posts.find(params[:id])
