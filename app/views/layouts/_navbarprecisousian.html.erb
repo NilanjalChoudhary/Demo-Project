@@ -122,7 +122,7 @@
 
         <% if current_user.role == "NonPreciousian" %>
         <div class = "links" >
-            <%= link_to "CONTACT US" %>
+            <%= link_to "CONTACT US", new_user_contact_path(current_user) %>
         </div>
         <% end %>
         

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'contacts/new'
-  get 'contacts/create'
+  
   root "homes#index"
 
   get 'chats/show'
@@ -21,6 +20,8 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
 
+  
+
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
     
   devise_scope :user do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     post 'user/:id/accept', to: "registrations#accept", as: "accept"
     post 'user/:id/cancel', to: "registrations#cancel", as: "cancel"
     resources :users do
+      resources :contacts, only: [:new, :create]
       resources :profiles
       resources :posts do
         resources :comments
