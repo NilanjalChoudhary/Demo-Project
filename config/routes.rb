@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'chats/show'
-
   root "homes#index"
+
+  get 'chats/show'
 
   get "/homes", to: "homes#index"
 
@@ -29,13 +29,6 @@ Rails.application.routes.draw do
     resources :users do
       resources :profiles
       resources :posts do
-        # post "like", to: "posts#like", as: "like"
-        # post "unlike", to: "posts#unlike", as: "unlike"
-        
-        # member do
-        #   put "like", to: "posts#like" 
-        #   put "unlike", to: "posts#unlike"
-        # end
         resources :comments
       end 
     end 

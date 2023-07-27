@@ -77,7 +77,7 @@
     <% end %>
 <% end %>
 
-
+<% unless current_user.role == "NonPreciousian" %>
 <% if current_user.id == @profile.user_id %>
 
   <% if current_user.posts.size > 0 %>
@@ -94,6 +94,7 @@
   <h1>USER HAS NO POST</h1>
   <% end %>
 
+<% end %>
 <% end %>
 <% User.find( @profile.user_id ).posts.each do |p| %>
     <%= p.title %>

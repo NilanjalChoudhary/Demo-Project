@@ -119,6 +119,12 @@
         <% end %>
         </a>
         </div>
+
+        <% if current_user.role == "NonPreciousian" %>
+        <div class = "links" >
+            <%= link_to "CONTACT US" %>
+        </div>
+        <% end %>
         
         
         <% if current_user.role == "Admin" %>
