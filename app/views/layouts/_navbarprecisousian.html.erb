@@ -148,8 +148,14 @@
                 <a class="links-hidden">
                 <%= button_to "EDIT PROFILE" %>
                 </a>
-                <a class="links-hidden">
-                <%= button_to "CHATS" %>
+                <%
+=begin%>
+ <a class="links-hidden"> 
+<%
+=end%>
+                <div class= " links " >
+                <%= link_to "CHAT", rooms_path %>
+                <div>
                 </a>
             </div>
         </div>

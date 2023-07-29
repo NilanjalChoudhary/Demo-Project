@@ -23,16 +23,20 @@
     <%= javascript_importmap_tags %>
 
     <% if user_signed_in? %>
-      <%= link_to "Chat", rooms_path %>
       <strong>WELCOME <%= current_user.name %></strong>
 
       <% role_list = ["Preciousian", "Admin", "NonPreciousian"] %>
         <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
           <%= render template: "layouts/_navbarprecisousian" %>
+        <% else %>
+          <h1> Please wait till admin approve your profile </h1>
+          <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+            :data => { :no_turbolink => true} %>    
+        <% end %>
     <% else %>
-        <h1> Please wait till admin approve your profile </h1>
+        <%= link_to "SIGN UP", new_user_registration_path %><br>
+        <%= link_to "SIGN IN", new_user_session_path %>
 
-      <% end %>
     <% end %>
     
   </head>
