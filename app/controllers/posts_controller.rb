@@ -3,38 +3,50 @@ class PostsController < ApplicationController
   # respond_to :js, :html, :json
 
   def index
-    if current_user.role == "NonPreciousian"
-      return @posts = Post.where(post_for: "NonPreciousian")
-    # @q = User.ransack(params[:q])
-    # @user = @q.result(distinct: true)
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+      # redirect_to wait_path 
     else
-      return @posts = Post.all
+      if current_user.role == "NonPreciousian"
+        return @posts = Post.where(post_for: "NonPreciousian")
+      # @q = User.ransack(params[:q])
+      # @user = @q.result(distinct: true)
+      else
+        return @posts = Post.all
+      end
     end
   end
 
   def show
-    @user = User.find(params[:user_id])
-    # @post = 
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @user = User.find(params[:user_id])
+    end
   end
   
-  # def upvote
-  #   @post = Post.find([params[:post_id]])
-  #   @post.liked_by current_user
-  # end
 
   def new
-    @post = current_user.posts.new
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @post = current_user.posts.new
+    end
   end
 
   def create
-    # @user = User.find(params[:user_id])
-    @post = current_user.posts.new(post_params)
-    # @post = Post.new(post_params)
-    if @post.save
-      redirect_to user_posts_path
-      flash[:success] = 'Post was successfully created.'
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
     else
-      render :new, status: :unprocessable_entity
+      # @user = User.find(params[:user_id])
+      @post = current_user.posts.new(post_params)
+      # @post = Post.new(post_params)
+      if @post.save
+        redirect_to user_posts_path
+        flash[:success] = 'Post was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -60,7 +72,6 @@ class PostsController < ApplicationController
   # end
 
   def like
-    
     @post = Post.find(params[:id])  
     @post.liked_by current_user
     redirect_to user_posts_path(Post.all)

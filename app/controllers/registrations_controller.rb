@@ -12,16 +12,24 @@ class RegistrationsController < Devise::RegistrationsController
   # end
 
   def follow  
-    @user = User.find(params[:id])
-    current_user.follow(@user)
-    # @user.accept_follow_request_of(current_user)
-    redirect_to user_profile_path( @user.id, @user.profile.id )
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @user = User.find(params[:id])
+      current_user.follow(@user)
+      # @user.accept_follow_request_of(current_user)
+      redirect_to user_profile_path( @user.id, @user.profile.id )
+    end
   end
 
   def unfollow
-    @user = User.find(params[:id])
-    current_user.unfollow(@user)
-    redirect_to user_profile_path( @user.id, @user.profile.id )
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @user = User.find(params[:id])
+      current_user.unfollow(@user)
+      redirect_to user_profile_path( @user.id, @user.profile.id )
+    end
   end
 
   def accept
