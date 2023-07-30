@@ -4,9 +4,13 @@ class CommentsController < ApplicationController
 
   def index
     # if Post.find(params[:post_id]).comments.count == 0
-      
+    
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
     @post = Post.find(params[:post_id])
     @comments = @post.comments
+    end
     # @Comments = @post.comments
   end
   def new

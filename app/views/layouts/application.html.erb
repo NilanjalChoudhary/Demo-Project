@@ -23,19 +23,25 @@
     <%= javascript_importmap_tags %>
 
     <% if user_signed_in? %>
-      <strong>WELCOME <%= current_user.name %></strong>
 
       <% role_list = ["Preciousian", "Admin", "NonPreciousian"] %>
         <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
+          <strong>WELCOME <%= current_user.name %></strong>
           <%= render template: "layouts/_navbarprecisousian" %>
         <% else %>
-          <h1> Please wait till admin approve your profile </h1>
-          <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+          <%
+=begin%>
+ <h1> Please wait till admin approve your profile </h1> 
+<%
+=end%>
+          <%#= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
             :data => { :no_turbolink => true} %>    
+          <%= render "layouts/confirm_first" %>
         <% end %>
     <% else %>
-        <%= link_to "SIGN UP", new_user_registration_path %><br>
-        <%= link_to "SIGN IN", new_user_session_path %>
+
+        <%#= link_to "SIGN UP", new_user_registration_path %><br>
+        <%#= link_to "SIGN IN", new_user_session_path %> 
 
     <% end %>
     

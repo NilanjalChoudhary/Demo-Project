@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+  
+  get "/homes", to: "homes#index"
+  root "homes#index"
+  
   get 'messages/new'
   get 'messages/index'
   get 'rooms/index'
   
-  root "homes#index"
 
   get 'chats/show'
 
-  get "/homes", to: "homes#index"
+  # get "confirm_first"
 
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
   get "profile/:id/show_followings", to: "profiles#show_followings", as: "show_followings"

@@ -1,0 +1,18 @@
+
+<style>
+        .msg {
+                position: fixed;
+                left: 700px;            
+                height:120px;
+                width:49%;
+        }
+</style>
+
+
+<div class = "msg">
+<h1>Wait till admin approve your Profile</h1>
+
+
+<%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
+        :data => { :no_turbolink => true} %>
+</div>  
