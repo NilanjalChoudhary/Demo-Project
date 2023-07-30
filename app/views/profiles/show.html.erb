@@ -48,6 +48,7 @@
 <div class = "body" >
 <div class = "foll" >
 <%# followers_count = @profile.user.follow_count %>
+<% if current_user.role != "NonPreciousian" %>
 <% followers_count = @profile.user.followings.size %>
 
 <h2> Followers:- <%= link_to followers_count, show_followers_path(@profile.id) %>
@@ -57,6 +58,7 @@
  <h2> Following:- <%= link_to following_count, show_followings_path(@profile.id) %><br><br> 
 
 </div>
+<% end %>
 
 <% if current_user.id == @profile.user_id %>
     <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
@@ -97,9 +99,9 @@
 <% end %>
 <% end %>
 <% User.find( @profile.user_id ).posts.each do |p| %>
-    <%= p.title %>
+    <%= p.title %><br>
         <% p.pictures.each do |p| %>
-           <%= image_tag( p, size: "170x180") %>
+           <%= image_tag( p, size: "350x360", style: 'border-radius: 20%;') %>
         <% end %>
     <%= p.body %>
     <%= p.get_likes.size %> LIkes<br>
