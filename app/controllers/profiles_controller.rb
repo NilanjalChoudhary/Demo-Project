@@ -6,20 +6,32 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id]) 
-    @profile = @user.profile
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @user = User.find(params[:user_id]) 
+      @profile = @user.profile
+    end
   end
 
   def new
-    @profile = current_user.build_profile
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @profile = current_user.build_profile
+    end
   end
 
   def create
-    @profile = current_user.build_profile(profile_params.merge(username: current_user.name, age: current_user.age, phone_number: current_user.phone_number, email: current_user.email))
-    if @profile.save 
-      redirect_to user_posts_path(current_user)
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
     else
-      render :new, status: :unprocessable_entity
+      @profile = current_user.build_profile(profile_params.merge(username: current_user.name, age: current_user.age, phone_number: current_user.phone_number, email: current_user.email))
+      if @profile.save 
+        redirect_to user_posts_path(current_user)
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -37,14 +49,22 @@ class ProfilesController < ApplicationController
   end  
 
   def show_followers
-    @profile = Profile.find(params[:id])
-    # @followers = @profile.user.all_follows
-    @followers = @profile.user.followers
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @profile = Profile.find(params[:id])
+      # @followers = @profile.user.all_follows
+      @followers = @profile.user.followers
+    end
   end
 
   def show_followings
-    @profile = Profile.find(params[:id])
-    @followings = @profile.user.all_following
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @profile = Profile.find(params[:id])
+      @followings = @profile.user.all_following
+    end
   end
 
   def search

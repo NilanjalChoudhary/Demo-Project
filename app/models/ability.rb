@@ -6,6 +6,7 @@ class Ability
     can :read, Post
     # can :read, Comment
     can :create, Comment
+    
 
     if user.present?
       case user.role

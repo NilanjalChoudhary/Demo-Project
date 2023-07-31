@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
 
+  validates :title, presence: true
   
   validates :title, presence: true
   # belongs_to :nonpreciousian, :preciousian

@@ -122,7 +122,7 @@
 
         <% if current_user.role == "NonPreciousian" %>
         <div class = "links" >
-            <%= link_to "CONTACT US", new_user_contact_path(current_user) %>
+            <%= link_to "CONTACT US", new_user_contact_path(current_user),  {:style=>'color:#FFFFFF;', :class => "css_class"} %>
         </div>
         <% end %>
         
@@ -148,8 +148,12 @@
                 <a class="links-hidden">
                 <%= button_to "EDIT PROFILE" %>
                 </a>
-                <a class="links-hidden">
-                <%= button_to "CHATS" %>
+               
+                <% if current_user.role != "NonPreciousian" %> 
+                <div class= " links " >
+                <%= link_to "CHAT", rooms_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+                <div>
+                <% end %>
                 </a>
             </div>
         </div>
