@@ -67,7 +67,7 @@
     <% if current_user.following? @profile.user %>
       
       <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %><br>
-      <%= button_to "CHAT" %>
+      <%#= button_to "CHAT" %>
     <% else %>
       
       <%= button_to 'Follow', follow_path(@profile.user.id) %>

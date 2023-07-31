@@ -29,6 +29,8 @@ class PostsController < ApplicationController
   def new
     if current_user.confirm_by_admin == false
       render partial: 'layouts/confirm_first'
+    elsif current_user.profile.present? == false
+      redirect_to new_user_profile_path(current_user), notice: "Please Create Profile First."
     else
       @post = current_user.posts.new
     end

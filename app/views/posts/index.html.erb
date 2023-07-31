@@ -12,9 +12,9 @@
   
 <% @posts.each do |p| %>
  <div>
-  <div class="user-info">
+  <div class="user-info"> 
   <strong>USER:- </strong>
-    <% unless current_user.role == "NonPreciousian" %>
+    <% unless current_user.role == "NonPreciousian" || p.user.profile == nil %>
       <%= link_to p.user.name, user_profile_path(user_id: p.user.id, id: p.user.profile.id) %> 
     <% end %>
     <% if p.user.role == "Admin" %>

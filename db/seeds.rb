@@ -11,13 +11,14 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 
 # User.create!(email: "sarika@a.com", name: "sarika", age: 32, phone_number: 9765678944, year_of_experience: 32, role: 2, password: "111111")
 
-User.create!(
-    email: "sarika@a.com",
-    name: "Sarika",
+User.create(
+    email: "joe@p.com",
+    name: "Joe",
     age: 32,
     phone_number: 9765678944,
     year_of_experience: 32,
     role: 2,
     password: "111111",
-    password_confirmation: "111111"
+    password_confirmation: "111111",
+    confirm_by_admin: true
   )
