@@ -3,6 +3,14 @@ class User < ApplicationRecord
   scope :all_except, ->(user) { where.not(id: user) }
   after_create_commit { broadcast_append_to "users" }
 
+  # validates :phone_number, inclusion: { in: 0..9 }
+  validates :age, numericality: true
+  validates :phone_number, numericality: true, length: { maximum: 13 }
+  validates :name, presence: true
+  validates :age, presence: true
+  validates :year_of_experience, presence: true
+
+
   acts_as_voter
 
   has_one :profile, dependent: :destroy

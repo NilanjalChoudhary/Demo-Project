@@ -1,15 +1,19 @@
 class ContactsController < ApplicationController
   def new
-    if current_user.confirm_by_admin == false
-      render partial: 'layouts/confirm_first'
+    if current_user.role == "Nonpreciousian"
+      if current_user.confirm_by_admin == false
+        render partial: 'layouts/confirm_first'
+      else
+      @user = User.find(params[:user_id])
+      @contact_us = @user.contacts.new
+      end
     else
-    @user = User.find(params[:user_id])
-    @contact_us = @user.contacts.new
+      redirect_to user_posts_path
     end
   end
 
   def create
-    if current_user.confirm_by_admin == false
+    if current_user.confirm_by_admin == false 
       render partial: 'layouts/confirm_first'
     else
       @user = User.find(params[:user_id])
