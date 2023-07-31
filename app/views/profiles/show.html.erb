@@ -101,7 +101,15 @@
         <% end %>
     <%= p.body %>
     <%= p.get_likes.size %> LIkes<br>
-    <%= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
+    <% if current_user.liked? p %>
+      <%= button_to "unlike", unlike_path( p.id)  %>
+    <% else %>
+      <%= button_to "like", like_path(p.id) %>
+    <% end %><br>
+  <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
+  <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
+  <hr />
+    <%#= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
     <hr>
 <% end %>
 </div>
