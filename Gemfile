@@ -3,10 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.4"
 
-#gem files added by the developer
+# gems added by the developer
 gem "devise"
 gem 'acts_as_votable'
-# gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem "byebug"
 gem 'haml'
@@ -14,6 +13,11 @@ gem "ransack"
 gem "cancancan", "~> 3.5"
 gem "bourbon", "~> 7.3"
 gem "bitters", "~> 2.0"
+gem "redis", "~> 4.0"
+gem "sassc", "~> 2.4"
+gem "activeadmin", "~> 3.0"
+
+
 
 
 
@@ -42,7 +46,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -84,6 +88,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-gem "sassc", "~> 2.4"
 
 #test
+
+
+gem "faker", "~> 3.2"

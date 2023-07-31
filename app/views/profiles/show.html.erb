@@ -4,14 +4,13 @@
     align-items: center;
   }
   .age-container h1 {
-    margin-right: 15px; /* Optional: Add some spacing between "AGE:" and the age value */
+    margin-right: 15px; 
   }
 
   .profile-detail {
-    /* display: flex; */
     position: relative;
     align-items: center;
-    bottom: 200px; /* Adjust the top value to position the div vertically */
+    bottom: 200px; 
     left: 200px;
   }
   .profile-detail {
@@ -47,7 +46,6 @@
 
 <div class = "body" >
 <div class = "foll" >
-<%# followers_count = @profile.user.follow_count %>
 <% if current_user.role != "NonPreciousian" %>
 <% followers_count = @profile.user.followings.size %>
 
@@ -61,14 +59,12 @@
 <% end %>
 
 <% if current_user.id == @profile.user_id %>
-    <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
     <%= link_to "CHANGE PASSWORD", edit_user_registration_path %><br><br>
 
     <%= button_to "Delete Account", registration_path(current_user), method: :delete, data: { confirm: "Are you sure you want to delete your account?" } %>
 
 <% else %>
     <% if current_user.following? @profile.user %>
-      <%#= link_to 'Unfollow', follows_destroy_path(user_id: @profile.user ), method: :delete, class: 'btn btn-danger' %>
       
       <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %><br>
       <%= button_to "CHAT" %>
@@ -109,5 +105,3 @@
     <hr>
 <% end %>
 </div>
-
-<%#= image_tag(@profile.profile_pic pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
