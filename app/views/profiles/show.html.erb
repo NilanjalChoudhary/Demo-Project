@@ -110,6 +110,10 @@
   <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
   <hr />
     <%#= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
+    <%= button_to "DELETE POST", user_post_path(current_user.id, p.id), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Confirm delete"
+    } %>
     <hr>
 <% end %>
 </div>

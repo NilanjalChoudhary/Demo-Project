@@ -144,14 +144,6 @@
                 <a class="links-hidden">
                 <%= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
                       :data => { :no_turbolink => true} %>
-                <%
-=begin%>
- </a>
-                <a class="links-hidden">
-                <%= button_to "EDIT PROFILE" %>
-                </a> 
-<%
-=end%>
                
                 <% if current_user.role != "NonPreciousian" %> 
                 <div class= " links " >
