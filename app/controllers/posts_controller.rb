@@ -95,9 +95,12 @@ class PostsController < ApplicationController
 
   def destroy
     # byebug
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to user_posts_path
+    @post = User.find(params[:user_id]).posts.find(params[:id])
+    if @post.destroy 
+      redirect_to user_posts_path, notice: "successfully deleted"
+    else
+      redirect_to user_posts_path, alert: "Failed to delete"
+    end
   end
 
   private 
