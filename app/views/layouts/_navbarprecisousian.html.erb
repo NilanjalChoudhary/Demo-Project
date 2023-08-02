@@ -147,7 +147,8 @@
                
                 <% if current_user.role != "NonPreciousian" %> 
                 <div class= " links " >
-                <%= link_to "CHAT", rooms_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %>
+                <% @room = Room.find_by(name: "group") %>
+                <%= link_to "Public Room", room_path(@room), {:style=>'color:#FFFFFF;', :class => "css_class"} %>
                 <div>
                 <% end %>
                 </a>

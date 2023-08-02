@@ -90,6 +90,18 @@ class ProfilesController < ApplicationController
   def destroy
   end
 
+  def private_chat
+    # byebug
+    @profile = Profile.find(params[:profile_id])
+    @room = Room.where("rooms.name LIKE ?", "%" + @profile.username + "%").where("rooms.name LIKE ?", "%" + current_user.name + "%").take(1)
+    if @room.size > 0
+      redirect_to room_path(@room)
+    else
+      @room = Room.create( name: current_user.name + "_" + @profile.username )
+      redirect_to room_path(@room.id)
+    end
+  end
+
   private
   def profile_params
     params.require(:profile).permit(:username, :age, :phone_number, :email, :profile_pic)

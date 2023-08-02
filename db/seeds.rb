@@ -22,3 +22,7 @@ User.create(
     password_confirmation: "111111",
     confirm_by_admin: true
   )
+
+Room.create(
+  name: "group"
+)
