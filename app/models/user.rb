@@ -1,5 +1,20 @@
 class User < ApplicationRecord
 
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
+  # ransacker :votes_id_eq, formatter: proc { nil } do
+  #   Arel.sql("1") # Return a condition that always evaluates to true to prevent searching
+  # end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["age", "confirm_by_admin", "confirmation_sent_at", "confirmation_token", "confirmed_at", "created_at", "email", "encrypted_password", "id", "name", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "unconfirmed_email", "updated_at", "year_of_experience"]
+  end
+  
+
+
   scope :all_except, ->(user) { where.not(id: user) }
   after_create_commit { broadcast_append_to "users" }
 

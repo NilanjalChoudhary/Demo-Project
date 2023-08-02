@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def new
-    if current_user.role == "Nonpreciousian"
+    if current_user.role == "NonPreciousian"
       if current_user.confirm_by_admin == false
         render partial: 'layouts/confirm_first'
       else

@@ -11,6 +11,8 @@
   display: flex;
   justify-content: flex-end
    }
+
+  <%= ".notice-#{}" %> 
   </style>
 
 
@@ -23,19 +25,11 @@
     <%= javascript_importmap_tags %>
 
     <% if user_signed_in? %>
-
       <% role_list = ["Preciousian", "Admin", "NonPreciousian"] %>
         <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
           <strong>WELCOME <%= current_user.name %></strong>
           <%= render template: "layouts/_navbarprecisousian" %>
-        <% else %>
-          <%
-=begin%>
- <h1> Please wait till admin approve your profile </h1> 
-<%
-=end%>
-          <%#= button_to "LOG OUT", destroy_user_session_path, :method => :delete,
-            :data => { :no_turbolink => true} %>    
+        <% else %>  
           <%= render "layouts/confirm_first" %>
         <% end %>
     <% else %>
@@ -44,11 +38,20 @@
         <%#= link_to "SIGN IN", new_user_session_path %> 
 
     <% end %>
-    
+
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+
+  
+ 
+ <p class="notice"><%= notice %></p> 
+
+    <%
+=begin%>
+ <span style='color: red;'><%= notice %></span> 
+<%
+=end%>
     <p class="alert"><%= alert %></p>
     <div class="container">
       <%= yield %>

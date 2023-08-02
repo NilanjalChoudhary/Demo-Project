@@ -5,14 +5,11 @@ class PostsController < ApplicationController
   def index
     if current_user.confirm_by_admin == false
       render partial: 'layouts/confirm_first'
-      # redirect_to wait_path 
     else
       if current_user.role == "NonPreciousian"
         return @posts = Post.where(post_for: "NonPreciousian")
-      # @q = User.ransack(params[:q])
-      # @user = @q.result(distinct: true)
       else
-        return @posts = Post.all
+        return @posts = Post.all.paginate(page: params[:page], per_page: 3)
       end
     end
   end
@@ -27,8 +24,14 @@ class PostsController < ApplicationController
   
 
   def new
-    if current_user.confirm_by_admin == false
+    if current_user.confirm_by_admin == false 
       render partial: 'layouts/confirm_first'
+    elsif current_user.role == "NonPreciousian"
+      redirect_to user_posts_path, notice: "You are not allowed to create post"
+      # format.html { redirect_to user_posts_path(current_user), notice: 'You are not allowed to create post' }
+
+    elsif current_user.profile.present? == false
+      redirect_to new_user_profile_path(current_user), notice: "Please Create Profile First."
     else
       @post = current_user.posts.new
     end
@@ -91,6 +94,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # byebug
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path
   end
 
   private 

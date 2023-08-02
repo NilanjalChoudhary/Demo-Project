@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.0.0"
 
 # gems added by the developer
 gem "devise"
@@ -16,7 +16,7 @@ gem "bitters", "~> 2.0"
 gem "redis", "~> 4.0"
 gem "sassc", "~> 2.4"
 gem "activeadmin", "~> 3.0"
-
+gem "will_paginate"
 
 
 
@@ -93,3 +93,4 @@ end
 
 
 gem "faker", "~> 3.2"
+
