@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'chats/show'
 
+  get "/profile/:profile_id/chat", to: "profiles#private_chat", as: "private_chat"
+
   # get "confirm_first"
 
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
