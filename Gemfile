@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
-# gems added by the developer
+# gems added by developer-------------------
 gem "devise"
 gem 'acts_as_votable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
@@ -87,10 +87,16 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  # gems added by developer-------------------
+  gem "faker", "~> 3.2"
+  gem "factory_bot_rails", "~> 6.2" 
+  gem "rspec-rails"
+
+
 end
 
 #test
 
 
-gem "faker", "~> 3.2"
 

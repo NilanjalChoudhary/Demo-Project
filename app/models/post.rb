@@ -9,6 +9,5 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   
-  validates :title, presence: true
   # belongs_to :nonpreciousian, :preciousian
 end

@@ -1,10 +1,10 @@
 class Comment < ApplicationRecord
 
+  validates :commenter, presence: true
+
   validates :comment, presence: true
 
   validates :comment, length: { in: 1..100 }
-
-  
 
   belongs_to :post
 

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  load_and_authorize_resource
+
   # respond_to :js, :html, :json
 
   def index

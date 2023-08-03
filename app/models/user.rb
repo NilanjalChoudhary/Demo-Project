@@ -24,6 +24,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :age, presence: true
   validates :year_of_experience, presence: true
+  validates :year_of_experience, numericality: { only_integer: true }
 
 
   acts_as_voter
