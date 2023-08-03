@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   
+  get "/homes", to: "homes#index"
   root "homes#index"
+  
+  get 'messages/new'
+  get 'messages/index'
+  get 'rooms/index'
+  
 
   get 'chats/show'
 
-  get "/homes", to: "homes#index"
+  get "/profile/:profile_id/chat", to: "profiles#private_chat", as: "private_chat"
+
+  # get "confirm_first"
 
   get "profile/:id/show_followers", to: "profiles#show_followers", as: "show_followers"
   get "profile/:id/show_followings", to: "profiles#show_followings", as: "show_followings"
@@ -20,11 +30,15 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {registrations: 'registrations'}, :paths => 'users'
 
-  
+  resources :rooms do
+    resources :messages
+  end
 
   devise_for :users, :controllers => {registrations: 'registrations'}, path: 'users'
-    
+
   devise_scope :user do
+    # get 'users/:id', to: 'registrations#show', as: 'user'
+
     post 'user/:id/follow', to: "registrations#follow", as: "follow"
     post 'user/:id/unfollow', to: "registrations#unfollow", as: "unfollow"
     post 'user/:id/accept', to: "registrations#accept", as: "accept"

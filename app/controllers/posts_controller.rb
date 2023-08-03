@@ -1,40 +1,57 @@
 class PostsController < ApplicationController
 
+  load_and_authorize_resource
+
   # respond_to :js, :html, :json
 
   def index
-    if current_user.role == "NonPreciousian"
-      return @posts = Post.where(post_for: "NonPreciousian")
-    # @q = User.ransack(params[:q])
-    # @user = @q.result(distinct: true)
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
     else
-      return @posts = Post.all
+      if current_user.role == "NonPreciousian"
+        return @posts = Post.where(post_for: "NonPreciousian")
+      else
+        return @posts = Post.all.paginate(page: params[:page], per_page: 3)
+      end
     end
   end
 
   def show
-    @user = User.find(params[:user_id])
-    # @post = 
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
+    else
+      @user = User.find(params[:user_id])
+    end
   end
   
-  # def upvote
-  #   @post = Post.find([params[:post_id]])
-  #   @post.liked_by current_user
-  # end
 
   def new
-    @post = current_user.posts.new
+    if current_user.confirm_by_admin == false 
+      render partial: 'layouts/confirm_first'
+    elsif current_user.role == "NonPreciousian"
+      redirect_to user_posts_path, notice: "You are not allowed to create post"
+      # format.html { redirect_to user_posts_path(current_user), notice: 'You are not allowed to create post' }
+
+    elsif current_user.profile.present? == false
+      redirect_to new_user_profile_path(current_user), notice: "Please Create Profile First."
+    else
+      @post = current_user.posts.new
+    end
   end
 
   def create
-    # @user = User.find(params[:user_id])
-    @post = current_user.posts.new(post_params)
-    # @post = Post.new(post_params)
-    if @post.save
-      redirect_to user_posts_path
-      flash[:success] = 'Post was successfully created.'
+    if current_user.confirm_by_admin == false
+      render partial: 'layouts/confirm_first'
     else
-      render :new, status: :unprocessable_entity
+      # @user = User.find(params[:user_id])
+      @post = current_user.posts.new(post_params)
+      # @post = Post.new(post_params)
+      if @post.save
+        redirect_to user_posts_path
+        flash[:success] = 'Post was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -60,7 +77,6 @@ class PostsController < ApplicationController
   # end
 
   def like
-    
     @post = Post.find(params[:id])  
     @post.liked_by current_user
     redirect_to user_posts_path(Post.all)
@@ -80,6 +96,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # byebug
+    @post = User.find(params[:user_id]).posts.find(params[:id])
+    if @post.destroy 
+      redirect_to user_posts_path, notice: "successfully deleted"
+    else
+      redirect_to user_posts_path, alert: "Failed to delete"
+    end
   end
 
   private 

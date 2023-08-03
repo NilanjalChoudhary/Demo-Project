@@ -6,6 +6,7 @@ class Ability
     can :read, Post
     # can :read, Comment
     can :create, Comment
+    
 
     if user.present?
       case user.role
@@ -18,9 +19,12 @@ class Ability
           can :read, Profile
           can :create, Profile
           can :destroy, Profile
-          
+          can :manage, Profile
+
           can :approv_accounts, Profile
           can :confirm_approve, Profile
+
+          can :manage, Post
 
         when "Preciousian"
           can :read, Comment
@@ -33,6 +37,8 @@ class Ability
 
           cannot :approv_accounts, Profile
           cannot :confirm_approve, Profile
+
+          can :manage, Post
 
         when "NonPreciousian"
           can :read, Post

@@ -1,13 +1,15 @@
 <%= form_with model: [ current_user, current_user.posts.build] do |f| %>
-<%
-=begin%>
- 
-  <div>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </div> 
-<%
-=end%>
+  
+  <% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <div>
     <%= f.label :pictures %><br>

@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+  <style>
+  <%= ".msg-#{current_user&.id}" %> {
+  background-color: #007bff !important;
+  padding: 10px;
+  }
+  <%= ".cont-#{current_user&.id}" %> {
+  display: flex;
+  justify-content: flex-end
+   }
+
+  <%= ".notice-#{}" %> 
+  </style>
+
+
     <title>PreciousConnect</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -10,21 +25,33 @@
     <%= javascript_importmap_tags %>
 
     <% if user_signed_in? %>
-      <strong>WELCOME <%= current_user.name %></strong>
-
       <% role_list = ["Preciousian", "Admin", "NonPreciousian"] %>
         <% if role_list.include? current_user.role and current_user.confirm_by_admin == true %>
+          <strong>WELCOME <%= current_user.name %></strong>
           <%= render template: "layouts/_navbarprecisousian" %>
+        <% else %>  
+          <%= render "layouts/confirm_first" %>
+        <% end %>
     <% else %>
-        <h1> Please wait till admin approve your profile </h1>
 
-      <% end %>
+        <%#= link_to "SIGN UP", new_user_registration_path %><br>
+        <%#= link_to "SIGN IN", new_user_session_path %> 
+
     <% end %>
-    
+
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+
+  
+ 
+ <p class="notice"><%= notice %></p> 
+
+    <%
+=begin%>
+ <span style='color: red;'><%= notice %></span> 
+<%
+=end%>
     <p class="alert"><%= alert %></p>
     <div class="container">
       <%= yield %>

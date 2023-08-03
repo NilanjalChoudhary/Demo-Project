@@ -4,14 +4,13 @@
     align-items: center;
   }
   .age-container h1 {
-    margin-right: 15px; /* Optional: Add some spacing between "AGE:" and the age value */
+    margin-right: 15px; 
   }
 
   .profile-detail {
-    /* display: flex; */
     position: relative;
     align-items: center;
-    bottom: 200px; /* Adjust the top value to position the div vertically */
+    bottom: 200px; 
     left: 200px;
   }
   .profile-detail {
@@ -47,7 +46,7 @@
 
 <div class = "body" >
 <div class = "foll" >
-<%# followers_count = @profile.user.follow_count %>
+<% if current_user.role != "NonPreciousian" %>
 <% followers_count = @profile.user.followings.size %>
 
 <h2> Followers:- <%= link_to followers_count, show_followers_path(@profile.id) %>
@@ -57,19 +56,18 @@
  <h2> Following:- <%= link_to following_count, show_followings_path(@profile.id) %><br><br> 
 
 </div>
+<% end %>
 
 <% if current_user.id == @profile.user_id %>
-    <%#= button_to "EDIT PROFILE", edit_user_path( current_user ) %>
     <%= link_to "CHANGE PASSWORD", edit_user_registration_path %><br><br>
 
     <%= button_to "Delete Account", registration_path(current_user), method: :delete, data: { confirm: "Are you sure you want to delete your account?" } %>
 
 <% else %>
     <% if current_user.following? @profile.user %>
-      <%#= link_to 'Unfollow', follows_destroy_path(user_id: @profile.user ), method: :delete, class: 'btn btn-danger' %>
       
       <%= button_to "UnFollow", unfollow_path(@profile.user.id ) %><br>
-      <%= button_to "CHAT" %>
+      <%= link_to "CHAT", private_chat_path(@profile.id) %>
     <% else %>
       
       <%= button_to 'Follow', follow_path(@profile.user.id) %>
@@ -97,15 +95,21 @@
 <% end %>
 <% end %>
 <% User.find( @profile.user_id ).posts.each do |p| %>
-    <%= p.title %>
+    <%= p.title %><br>
         <% p.pictures.each do |p| %>
-           <%= image_tag( p, size: "170x180") %>
+           <%= image_tag( p, size: "350x360", style: 'border-radius: 20%;') %>
         <% end %>
     <%= p.body %>
     <%= p.get_likes.size %> LIkes<br>
-    <%= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
+    <% if current_user.liked? p %>
+      <%= button_to "unlike", unlike_path( p.id)  %>
+    <% else %>
+      <%= button_to "like", like_path(p.id) %>
+    <% end %><br>
+  <%= link_to "VIEW COMMENTS", user_post_comments_path(current_user, p.id) %><br>
+  <%= link_to "Add Comment", new_user_post_comment_path(current_user, p.id ) %>
+    <%#= link_to "Comments", user_post_comments_path(@profile.user, p.id ) %>
+    <%#= button_to "DELETE POST", user_post_path(current_user.id, p.id), data: { turbo_method: :delete, turbo_confirm: "Confirm delete" } %>
     <hr>
 <% end %>
 </div>
-
-<%#= image_tag(@profile.profile_pic pics, size: "170x180", style: 'border-radius: 50%;', class: 'css_class')  %>
