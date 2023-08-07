@@ -46,3 +46,12 @@ If User is NonPreciousian then he/she can:-
 8) cancancan 		- for authorization. 
 9) image_processing 	- for resizig images.
 10) active_storage 	- for uploading photos.
+11) bourbon 		- for design.
+12) bitters 		- for design.
+13) sassc 		- to use of the original Ruby Sass library.
+
+
+	Before running project do this necessary commends.
+1) bundle install - to install all the gems.
+2) rails db:migrate  - to make the schema.
+3) rails db:seed to create admin devise user. 
