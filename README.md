@@ -51,7 +51,7 @@ If User is NonPreciousian then he/she can:-
 13) sassc 		- to use of the original Ruby Sass library.
 
 
-	Before running project do this necessary commends.
+-	Before running project do this necessary commends.
 1) bundle install - to install all the gems.
 2) rails db:migrate  - to make the schema.
 3) rails db:seed to create admin devise user. 
