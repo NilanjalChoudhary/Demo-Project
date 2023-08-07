@@ -1,6 +1,6 @@
 # README
 
-he project Title is "Precious Connect"
+The project Title is "Precious Connect"
 
 		Technologies used :- 
 - Programming Languages: ruby ( version - 3.0.0 )
