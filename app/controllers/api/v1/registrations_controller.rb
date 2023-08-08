@@ -1,9 +1,15 @@
-class RegistrationsController < Devise::RegistrationsController
+class Api::V1::RegistrationsController < Devise::RegistrationsController
   
   def sign_out_and_redirect
     sign_out(current_user)
     redirect_to root_path, notice: "You have been automatically logged out due to inactivity."
   end
+  # def follow
+  #   byebug
+  #   @user = User.find(params[:id])
+  #   current_user.follow(@user)
+  #   redirect_to user_profile_path 
+  # end
 
   def follow  
     if current_user.confirm_by_admin == false

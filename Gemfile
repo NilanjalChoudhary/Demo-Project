@@ -17,7 +17,10 @@ gem "redis", "~> 4.0"
 gem "sassc", "~> 2.4"
 gem "activeadmin", "~> 3.0"
 gem "will_paginate"
-
+gem "rack-cors"
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
+gem 'fast_jsonapi'
 
 
 
