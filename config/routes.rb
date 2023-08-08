@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
       get "/homes", to: "homes#index"
       root "homes#index"
-      
+
+      post 'confirmations', to: 'confirmations#create', as: "confirm_acc"
+
       get 'messages/new'
       get 'messages/index'
       get 'rooms/index'
